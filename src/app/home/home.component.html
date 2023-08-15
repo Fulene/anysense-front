@@ -1,0 +1,12 @@
+<section *ngIf="subcontractors.length">
+  <pre>{{ subcontractors.length }}</pre>
+  <div *ngFor="let subcontractor of subcontractors">
+    <p>{{ subcontractor.kcID }}</p>
+    <p>{{ subcontractor.name }}</p>
+    <p>{{ subcontractor.firstname }}</p>
+    <br>
+    <hr>
+    <br>
+  </div>
+
+</section>
