@@ -4,6 +4,7 @@ import { environment } from "../../environments/environment";
 import { Subcontractor } from "../subcontractor/models/subcontractor";
 import { SubcontractorService } from "../subcontractor/services/subcontractor.service";
 import { Subscription, Unsubscribable } from "rxjs";
+import { NotificationService } from "../shared/services/notification.service";
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit, Unsubscribable {
   subcontractors: Subcontractor[] = [];
   private subscription = new Subscription();
 
-  constructor(private subcontractorService: SubcontractorService) {
+  constructor(private subcontractorService: SubcontractorService, private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -38,4 +39,7 @@ export class HomeComponent implements OnInit, Unsubscribable {
     this.subscription.unsubscribe();
   }
 
+  onTest() {
+    this.notificationService.showErrorNotif("Les notifs fonctionnent !", true);
+  }
 }

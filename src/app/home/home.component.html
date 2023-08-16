@@ -1,4 +1,5 @@
 <section *ngIf="subcontractors.length">
+  <button (click)="onTest()">test</button>
   <pre>{{ subcontractors.length }}</pre>
   <div *ngFor="let subcontractor of subcontractors">
     <p>{{ subcontractor.kcID }}</p>

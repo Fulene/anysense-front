@@ -1,0 +1,62 @@
+@import "styles/palette";
+
+// ============================= snack-bar =============================
+.mat-mdc-snack-bar-container {
+  max-width: 100% !important;
+
+  .mat-mdc-snack-bar-label {
+    padding-left: 16px !important;
+  }
+
+  .mdc-button {
+    &:hover {
+      transform: scale(1.2);
+
+      .mdc-button-focus-overlay {
+        opacity: 0 !important;
+      }
+    }
+  }
+}
+
+.info .mdc-snackbar__surface {
+  color: white !important;
+  background-color: #049DD9 !important;
+
+  .mdc-button {
+    color: white !important;
+  }
+}
+
+.success .mdc-snackbar__surface {
+  background-color: #5D9C5940;
+  box-shadow: 0 0 25px #44444450;
+  border: 1px solid $success;
+  color: $success !important;
+
+  .mdc-button {
+    color: $success !important;
+  }
+}
+
+.error .mdc-snackbar__surface {
+  background-color: #f7d2d2;
+  box-shadow: 0 0 25px #44444450;
+  border: 1px solid $danger;
+  color: $danger !important;
+
+  .mdc-button {
+    color: $danger !important;
+  }
+}
+
+.alert .mdc-snackbar__surface {
+  background-color: #f6e0d1;
+  box-shadow: 0 0 25px #44444450;
+  border: 1px solid $warning;
+  color: $warning !important;
+
+  .mdc-button {
+    color: $warning !important;
+  }
+}
