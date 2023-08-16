@@ -12,7 +12,7 @@ build_job:
   stage: build
   image: node:18
   script:
-    - npm install --only=production
+    - npm install
     - npm run build:ssr --configuration=production
   only:
     - main
