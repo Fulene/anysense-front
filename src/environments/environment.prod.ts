@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
+  production: true,
   apiHost: 'https://api.anysense.fr/'
 }
