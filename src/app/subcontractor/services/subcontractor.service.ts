@@ -8,14 +8,12 @@ import { Subcontractor } from "../models/subcontractor";
   providedIn: 'root'
 })
 export class SubcontractorService {
-  private API_ENDPOINT = environment.apiHost + 'subcontractors'
+  private API_ENDPOINT = environment.apiHost + 'subcontractor'
 
   constructor(private http: HttpClient) { }
 
   public findAll(): Observable<Subcontractor[]> {
-    return this.http.get<any>(this.API_ENDPOINT).pipe(
-      map(data => data._embedded?.subcontractors || [])
-    );
+    return this.http.get<any>(this.API_ENDPOINT + "/all");
   }
 
 }

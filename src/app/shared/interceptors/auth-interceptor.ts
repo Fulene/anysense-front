@@ -4,7 +4,6 @@ import { from, mergeMap, Observable } from "rxjs";
 import { inject } from "@angular/core";
 
 export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
-  console.log("REQ INITIAL : ", req)
   const kcService = inject(KeycloakService);
   return from(kcService.getToken()).pipe(
     mergeMap((authToken: string) => {
@@ -14,10 +13,8 @@ export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn) 
             Authorization: `Bearer ${authToken}`
           }
         });
-        console.log("REQ AUTH : ", authRequest)
         return next(authRequest);
       } else {
-        console.log("REQ no AUTH : ", req)
         return next(req);
       }
     })
