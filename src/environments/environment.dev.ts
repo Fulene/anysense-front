@@ -1,4 +1,8 @@
 export const environment = {
   production: false,
-  apiHost: 'http://localhost:8081/'
+  appUri: 'http://localhost:4200',
+  apiHost: 'http://localhost:8081/',
+  kcHost: 'http://localhost:8089/',
+  kcRealm: 'anysense-realm',
+  kcClient: 'anysense-front'
 }

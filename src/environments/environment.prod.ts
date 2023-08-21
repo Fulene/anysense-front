@@ -1,4 +1,8 @@
 export const environment = {
   production: true,
-  apiHost: 'https://api.anysense.fr/'
+  appUri: 'https://anysense.fr',
+  apiHost: 'https://api.anysense.fr/',
+  kcHost: 'https://auth.anysense.fr',
+  kcRealm: 'anysense-realm',
+  kcClient: 'anysense-front'
 }

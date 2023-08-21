@@ -1,4 +1,8 @@
 export const environment = {
   production: false,
-  apiHost: ''
+  appUri: '',
+  apiHost: '',
+  kcHost: '',
+  kcRealm: '',
+  kcClient: ''
 }
