@@ -2,5 +2,20 @@
 @import "src/styles/palette";
 @import "src/styles/material";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body, div, span, app-root {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  font-family: Moderat, Arial, Helvetica, sans-serif !important;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f0f0f0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
