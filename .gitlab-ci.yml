@@ -43,11 +43,11 @@ deploy_job:
   services:
     - docker:dind
   before_script:
-    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
+    - - mkdir -p ~/.ssh
+      - chmod 700 ~/.ssh
+    - 'command -v ssh-agent >/dev/null || ( apk add --no-cache openssh )'
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
     - ssh-keyscan $SSH_IP_SERVER >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
