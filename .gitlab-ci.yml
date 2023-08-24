@@ -16,6 +16,7 @@ build_job:
     - npm run build:ssr --configuration=production
   only:
     - main
+    - temporary
 
 dockerize_job:
   stage: dockerize
@@ -34,6 +35,7 @@ dockerize_job:
     - docker push $CI_REGISTRY_IMAGE/anysense-front:$CI_COMMIT_SHORT_SHA
   only:
     - main
+    - temporary
 
 deploy_job:
   stage: deploy
@@ -64,4 +66,5 @@ deploy_job:
     name: production
   only:
     - main
+    - temporary
 

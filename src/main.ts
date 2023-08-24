@@ -21,14 +21,7 @@ const routes: Routes = [
   {
     path: 'home',
     title: 'welcome',
-    // providers: [SubcontractorService],
     loadComponent: () => import('./app/home/home.component').then(module => module.HomeComponent)
-  },
-  {
-    path: 'test',
-    title: 'test',
-    loadComponent: () => import('./app/test/test.component').then(module => module.TestComponent),
-    canActivate: [AuthGuard]
   },
   {
     path: '**',
@@ -39,7 +32,7 @@ const routes: Routes = [
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(),
     importProvidersFrom(
       BrowserModule,
       FormsModule,

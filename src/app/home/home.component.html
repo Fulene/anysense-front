@@ -1,7 +1,21 @@
 <main>
   <div class="content">
     <img ngSrc="assets/images/shared/logo-anysense-temp.png" alt="logo" height="250" width="252" priority="true">
-    <h2>Chercher, trouver, connecter</h2>
+    <h2>Trouver le prestataire idéal pour vos projets</h2>
     <p>Notre plateforme sera disponible très prochainement, inscrivez-vous à notre newsletter pour faire partie des premiers à en être informés.</p>
+
+    <div [formGroup]="form" class="form">
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="mail@example.com" formControlName="mail" (keyup.enter)="save()">
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+      <button (click)="save()">Je m'inscris</button>
+    </div>
+    <span class="error" *ngIf="form.invalid && form.get('mail')?.touched">Veuillez entrer une adresse email valide</span>
   </div>
+
+  <footer>
+    © 2023 Anysense. Tous droits réservés.
+  </footer>
 </main>

@@ -1,9 +1,16 @@
 main {
   height: 100vh;
-  background: #ded8d7;
-  padding-top: 150px;
+  background: #ded8d8;
+  padding: 150px 50px 0 50px;
   display: flex;
   justify-content: center;
+
+  span.error {
+    color: #EF442B;
+    font-weight: 500;
+    width: 100%;
+    margin-top: -15px;
+  }
 
   div.content {
     width: 30vw;
@@ -14,7 +21,91 @@ main {
     p {
       margin-top: 20px;
       font-size: 18px;
-      line-height: 1.5em;
+      line-height: 1.6em;
+    }
+
+    div.form {
+      width: 100%;
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+
+      mat-form-field {
+        flex: 1;
+        //min-width: 300px;
+        margin-right: 20px;
+      }
+
+      button {
+        min-width: 140px;
+        background-image: linear-gradient(to right, #FBA81A, #D84C1A);
+        background-color: #FA900F;
+        height: 56px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        color: #ded8d7;
+        transition: .3s;
+
+        &:hover {
+          background-image: linear-gradient(to right, #FBA81A, #FB9C14, #FA870B, #D84C1A);
+        }
+
+        &:active {
+          transform: scale(.9);
+        }
+      }
+    }
+  }
+
+  footer {
+    position: fixed;
+    bottom: 10px;
+    text-align: center;
+  }
+
+  @media (max-width: 1250px) {
+    div.content {
+      width: 70vw;
+
+      p {
+        text-align: center;
+      }
+    }
+
+    div.form {
+      width: 70% !important;
+      flex-direction: column;
+      align-items: center;
+
+      mat-form-field {
+        width: 100%;
+        margin-right: 0 !important;
+      }
+
+      button {
+        min-width: 100% !important;
+        margin-top: -10px;
+      }
+    }
+
+    span.error {
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    /* Pour les écrans de taille maximale de 480px (smartphones) */
+    div.content {
+      width: 90vw;
+
+      div.form {
+        width: 100% !important;
+      }
     }
   }
 }

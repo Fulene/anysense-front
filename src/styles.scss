@@ -15,7 +15,8 @@ body {
   background-color: #f0f0f0;
 }
 
-a {
+a, button {
+  font-family: inherit;
   color: inherit;
   text-decoration: none;
 }
