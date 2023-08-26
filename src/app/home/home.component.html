@@ -5,7 +5,7 @@
     <p>Notre plateforme sera disponible très prochainement, inscrivez-vous à notre newsletter pour faire partie des premiers à en être informés.</p>
 
     <div [formGroup]="form" class="form">
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Enter your email</mat-label>
         <input matInput placeholder="mail@example.com" formControlName="mail" (keyup.enter)="save()">
         <mat-icon matSuffix>email</mat-icon>
