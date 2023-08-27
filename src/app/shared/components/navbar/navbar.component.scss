@@ -11,19 +11,37 @@ nav {
     justify-content: center;
     align-items: center;
 
-    a {
-      display: inline-block; /* Permet au lien de s'adapter à la hauteur de l'image */
-      line-height: 0;
-    }
-
     ul {
       display: flex;
       justify-content: center;
       align-items: center;
 
       li {
+        position: relative;
         list-style-type: none;
-        margin-right: 20px;
+        margin-right: 25px;
+        cursor: pointer;
+        transition: all 0.1s ease;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          background-color: #333;
+          bottom: -3px;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: all 0.3s ease; /* Transition pour l'animation de soulignement */
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+
+        &:active {
+          transform: scale(.9);
+        }
       }
     }
   }

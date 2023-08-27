@@ -3,10 +3,10 @@
   <h3>{{ userName }}</h3>
   <button (click)="logout()">Logout</button>
 </div>
-<section *ngIf="subcontractors.length">
+<section *ngIf="contractors.length">
   <button (click)="onTest()">test</button>
-  <pre>{{ subcontractors.length }}</pre>
-  <div *ngFor="let subcontractor of subcontractors">
+  <pre>{{ contractors.length }}</pre>
+  <div *ngFor="let subcontractor of contractors">
     <p>{{ subcontractor.kcID }}</p>
     <p>{{ subcontractor.name }}</p>
     <p>{{ subcontractor.firstname }}</p>

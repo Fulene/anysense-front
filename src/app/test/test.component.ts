@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from "keycloak-angular";
 import { environment } from "../../environments/environment";
-import { Subcontractor } from "../subcontractor/models/subcontractor";
+import { Contractor } from "../contractor/models/contractor";
 import { Subscription, Unsubscribable } from "rxjs";
-import { SubcontractorService } from "../subcontractor/services/subcontractor.service";
+import { ContractorService } from "../contractor/services/contractor.service";
 import { NotificationService } from "../shared/services/notification.service";
 import { NgForOf, NgIf } from "@angular/common";
 
@@ -19,12 +19,12 @@ import { NgForOf, NgIf } from "@angular/common";
 })
 export class TestComponent implements OnInit, Unsubscribable {
   userName?: string
-  subcontractors: Subcontractor[] = [];
+  contractors: Contractor[] = [];
   private subscription = new Subscription();
 
   constructor(
     private kcService: KeycloakService,
-    private subcontractorService: SubcontractorService,
+    private subcontractorService: ContractorService,
     private notificationService: NotificationService
   ) {}
 
@@ -36,7 +36,7 @@ export class TestComponent implements OnInit, Unsubscribable {
   private initDataTest(): void {
     this.subscription.add(
       this.subcontractorService.findAll().subscribe({
-        next: value => this.subcontractors = value,
+        next: value => this.contractors = value,
         error: err => console.log(err)
       })
     );

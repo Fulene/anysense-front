@@ -1,13 +1,11 @@
 <nav>
   <div class="left">
-    <a routerLink="/">
-      <img ngSrc="assets/images/shared/logo1.jpg" alt="logo" priority="true" height="40" width="167">
-    </a>
+    <img (click)="navigateTo('/')" ngSrc="assets/images/shared/logo1.jpg" alt="logo" priority="true" height="40" width="167">
     <ul>
-      <li><a routerLink="/test">Test</a></li>
-      <li><a routerLink="/">Path 2</a></li>
-      <li><a routerLink="/">Path 3</a></li>
-      <li><a routerLink="/">Path 4</a></li>
+      <li (click)="navigateTo('/test')">Entreprises</li>
+      <li (click)="navigateTo('/')">Prestataires</li>
+      <li (click)="navigateTo('/')">Solutions</li>
+      <li (click)="navigateTo('/')">Ressources</li>
     </ul>
   </div>
 
