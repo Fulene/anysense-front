@@ -1,0 +1,38 @@
+@import "src/styles/palette";
+
+button {
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 12px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: .3s;
+
+  &.primary {
+    background-image: linear-gradient(to right, #FBA81A, #D84C1A);
+    background-color: $primary;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+
+  &.secondary {
+    background-image: linear-gradient(to right, #BBFF6E, #51D19F, #0FBECF);
+    background-color: $secondary;
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+
+  &:active {
+    transform: scale(.95);
+  }
+
+  &.disabled {
+    opacity: .4;
+    cursor: not-allowed;
+  }
+}

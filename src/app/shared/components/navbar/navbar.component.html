@@ -10,7 +10,15 @@
   </div>
 
   <div class="right">
-    <button (click)="createAccount()">Créer mon compte</button>
-    <button (click)="login()">Me connecter</button>
+    <ng-container *ngIf="!isUserLoggedIn; else logged">
+      <app-button theme="primary" label="Créer mon compte" (onClick)="createAccount()"></app-button>
+      <app-button-bis label="Me connecter" (onClick)="login()"></app-button-bis>
+    </ng-container>
+
+<!--   todo : to remove   -->
+    <ng-template #logged>
+      <span></span>
+      <app-button-bis label="Se déconnecter" (onClick)="logout()"></app-button-bis>
+    </ng-template>
   </div>
 </nav>

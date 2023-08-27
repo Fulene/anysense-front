@@ -1,0 +1,45 @@
+@import "src/styles/palette";
+
+button {
+  border: none;
+  font-weight: 500;
+  padding: 6px 0;
+  font-size: 14px;
+  cursor: pointer;
+  transition: .3s;
+  position: relative;
+  background: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-47%);
+    transition: 0.3s;
+  }
+
+  &:hover::after {
+    width: 0;
+  }
+
+  &:active {
+    transform: scale(.9);
+  }
+
+  &.primary {
+    color: $primary;
+  }
+
+  &.secondary {
+    color: $secondary;
+  }
+
+  &.disabled {
+    opacity: .4;
+    cursor: not-allowed;
+  }
+}

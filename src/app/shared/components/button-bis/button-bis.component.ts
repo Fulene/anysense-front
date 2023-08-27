@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @Component({
-  selector: 'app-button',
+  selector: 'app-button-bis',
   standalone: true,
   imports: [CommonModule, MatProgressSpinnerModule],
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  templateUrl: './button-bis.component.html',
+  styleUrls: ['./button-bis.component.scss']
 })
-export class ButtonComponent {
+export class ButtonBisComponent {
 
   @Input() label?: string;
   @Input() theme?: string;

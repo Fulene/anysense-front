@@ -7,10 +7,10 @@ import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { provideRouter, Routes } from "@angular/router";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { KeycloakAngularModule, KeycloakService } from "keycloak-angular";
-// import { initializeKeycloak } from "src/utils/keycloak-init";
 import { AuthGuard } from "./app/shared/guards/AuthGuard";
 import { initializeKeycloak } from "./utils/keycloak-init";
 import { authInterceptor } from "./app/shared/interceptors/auth-interceptor";
+import { CommonModule } from "@angular/common";
 
 const routes: Routes = [
   {
@@ -44,7 +44,8 @@ bootstrapApplication(AppComponent, {
       BrowserModule,
       FormsModule,
       MatSnackBarModule,
-      KeycloakAngularModule
+      KeycloakAngularModule,
+      CommonModule
     ),
     provideAnimations(),
     provideRouter(routes),
