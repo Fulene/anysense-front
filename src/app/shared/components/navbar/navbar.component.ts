@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
   }
 
   createAccount() {
-
+    this.kcService.register().then(() => this.isLoggedIn())
   }
 
   login() {

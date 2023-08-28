@@ -20,7 +20,7 @@ button {
   }
 
   &.secondary {
-    background-image: linear-gradient(to right, #BBFF6E, #51D19F, #0FBECF);
+    background-image: linear-gradient(to right, #51D19F, #0FBECF);
     background-color: $secondary;
     &:hover {
       filter: brightness(90%);
