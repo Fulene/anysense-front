@@ -9,7 +9,7 @@
     </ul>
   </div>
 
-  <div class="right">
+  <div class="right" *ngIf="isUserLoggedIn !== null">
     <ng-container *ngIf="!isUserLoggedIn; else logged">
       <app-button theme="primary" label="Créer mon compte" (onClick)="createAccount()"></app-button>
       <app-button-bis label="Me connecter" (onClick)="login()"></app-button-bis>
