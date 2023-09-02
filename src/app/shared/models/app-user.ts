@@ -1,5 +1,11 @@
+import { Profile } from "./profile";
+
 export interface AppUser {
-  kcID: string;
+
+  kcId: string;
   name: string;
-  firstname: number;
+  firstname: string;
+  email: string;
+  profiles: Profile[];
+
 }

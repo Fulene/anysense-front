@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from "keycloak-angular";
 import { environment } from "../../environments/environment";
-import { Contractor } from "../contractor/models/contractor";
+import { Contractor } from "../contractor/models/contractor-profile";
 import { Subscription, Unsubscribable } from "rxjs";
-import { ContractorService } from "../contractor/services/contractor.service";
+import { ContractorProfileService } from "../contractor/services/contractor-profile.service";
 import { NotificationService } from "../shared/services/notification.service";
 import { NgForOf, NgIf } from "@angular/common";
 
@@ -24,7 +24,7 @@ export class TestComponent implements OnInit, Unsubscribable {
 
   constructor(
     private kcService: KeycloakService,
-    private subcontractorService: ContractorService,
+    private subcontractorService: ContractorProfileService,
     private notificationService: NotificationService
   ) {}
 
