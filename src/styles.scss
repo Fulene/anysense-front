@@ -1,10 +1,16 @@
 @import "src/styles/palette";
 @import "src/styles/material";
 
+@font-face {
+  font-family: 'Moderat';
+  src: url('/assets/fonts/moderat/Moderat-Regular.woff');
+}
+
 html, body, div, span, app-root {
   margin: 0;
   padding: 0;
   border: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -20,7 +26,8 @@ a, button {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 700;
+  letter-spacing: .7px;
 }
 

@@ -1,0 +1,12 @@
+<div class="signup-container">
+
+  <img class="logo" (click)="navigateTo('/')" ngSrc="../../../../assets/images/core/logo1.jpg" alt="logo" priority="true" height="40" width="167">
+
+  <app-profile-selection *ngIf="newUser && !newUser.profiles.length" (onSelectProfileType)="onSelectProfileType($event)">
+  </app-profile-selection>
+
+<!--  todo
+  Add components for more step in profile config workflow
+-->
+
+</div>

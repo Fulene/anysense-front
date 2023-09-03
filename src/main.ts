@@ -31,9 +31,9 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'profile-selection',
-    title: 'Selection du profile',
-    loadComponent: () => import('./app/core/components/profile-selection/profile-selection.component').then(module => module.ProfileSelectionComponent),
+    path: 'signup',
+    title: 'Création de compte',
+    loadComponent: () => import('./app/core/components/signup/signup-workflow/signup-workflow.component').then(module => module.SignupWorkflowComponent),
   },
   {
     path: '**',

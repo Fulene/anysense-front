@@ -6,9 +6,9 @@ export class AppUser {
   name?: string;
   firstname?: string;
   email?: string;
-  profiles?: UserProfile[];
+  profiles: UserProfile[] = [];
 
-  constructor(data: Partial<AppUser>) {
+  constructor(data?: Partial<AppUser>) {
   }
 
 }

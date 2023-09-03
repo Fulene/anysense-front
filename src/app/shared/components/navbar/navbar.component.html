@@ -1,6 +1,6 @@
 <nav>
   <div class="left">
-    <img (click)="navigateTo('/')" ngSrc="assets/images/shared/logo1.jpg" alt="logo" priority="true" height="40" width="167">
+    <img (click)="navigateTo('/')" ngSrc="../../../../assets/images/core/logo1.jpg" alt="logo" priority="true" height="40" width="167">
     <ul>
       <li (click)="navigateTo('/test')">Entreprises</li>
       <li (click)="navigateTo('/')">Prestataires</li>
@@ -11,7 +11,7 @@
 
   <div class="right" *ngIf="isUserLoggedIn !== null">
     <ng-container *ngIf="!isUserLoggedIn; else logged">
-      <app-button theme="primary" label="Créer mon compte" (onClick)="navigateTo('/profile-selection')"></app-button>
+      <app-button theme="primary" label="Créer mon compte" (onClick)="navigateTo('/signup')"></app-button>
       <app-button-bis label="Me connecter" (onClick)="login()"></app-button-bis>
     </ng-container>
 
