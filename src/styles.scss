@@ -1,4 +1,3 @@
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "src/styles/palette";
 @import "src/styles/material";
 
@@ -11,12 +10,17 @@ html, body, div, span, app-root {
 body {
   font-family: Moderat, Arial, Helvetica, sans-serif !important;
   line-height: 1.5;
-  color: #333;
+  color: $text;
 }
 
 a, button {
   font-family: inherit;
   color: inherit;
   text-decoration: none;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
 }
 

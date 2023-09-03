@@ -6,7 +6,7 @@ export abstract class BaseEntityService<T> {
   protected API_ENDPOINT = environment.apiHost;
 
   protected constructor(
-    private entityPath: string,
+    protected entityPath: string,
     protected http: HttpClient
   ) {
     this.API_ENDPOINT += entityPath;

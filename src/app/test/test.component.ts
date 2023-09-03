@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from "keycloak-angular";
 import { environment } from "../../environments/environment";
-import { Contractor } from "../contractor/models/contractor-profile";
 import { Subscription, Unsubscribable } from "rxjs";
-import { ContractorProfileService } from "../contractor/services/contractor-profile.service";
 import { NotificationService } from "../shared/services/notification.service";
 import { NgForOf, NgIf } from "@angular/common";
+import { AppUser } from "../shared/models/app-user";
+import { UserService } from "../shared/services/user.service";
 
 @Component({
   selector: 'app-test',
@@ -19,12 +19,12 @@ import { NgForOf, NgIf } from "@angular/common";
 })
 export class TestComponent implements OnInit, Unsubscribable {
   userName?: string
-  contractors: Contractor[] = [];
+  users: AppUser[] = [];
   private subscription = new Subscription();
 
   constructor(
     private kcService: KeycloakService,
-    private subcontractorService: ContractorProfileService,
+    private userService: UserService,
     private notificationService: NotificationService
   ) {}
 
@@ -35,8 +35,8 @@ export class TestComponent implements OnInit, Unsubscribable {
 
   private initDataTest(): void {
     this.subscription.add(
-      this.subcontractorService.findAll().subscribe({
-        next: value => this.contractors = value,
+      this.userService.findAll().subscribe({
+        next: value => this.users = value,
         error: err => console.log(err)
       })
     );

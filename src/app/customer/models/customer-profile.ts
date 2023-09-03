@@ -1,6 +1,6 @@
-import { Profile } from "../../shared/models/profile";
+import { UserProfile } from "../../shared/models/user-profile";
 
-export class CustomerProfile extends Profile {
+export class CustomerProfile extends UserProfile {
 
   // todo => projects
 

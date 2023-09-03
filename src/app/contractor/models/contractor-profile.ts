@@ -1,7 +1,7 @@
 import { ContractorExpertiseType } from "./enums/contractor-expertise-type";
-import { Profile } from "../../shared/models/profile";
+import { UserProfile } from "../../shared/models/user-profile";
 
-export interface ContractorProfile extends Profile {
+export interface ContractorProfile extends UserProfile {
 
   contractorExpertiseType: ContractorExpertiseType;
   // todo => availabilities

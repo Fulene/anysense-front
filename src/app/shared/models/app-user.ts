@@ -1,11 +1,14 @@
-import { Profile } from "./profile";
+import { UserProfile } from "./user-profile";
 
-export interface AppUser {
+export class AppUser {
 
-  kcId: string;
-  name: string;
-  firstname: string;
-  email: string;
-  profiles: Profile[];
+  kcId?: string;
+  name?: string;
+  firstname?: string;
+  email?: string;
+  profiles?: UserProfile[];
+
+  constructor(data: Partial<AppUser>) {
+  }
 
 }

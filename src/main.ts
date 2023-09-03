@@ -22,13 +22,18 @@ const routes: Routes = [
     path: 'home',
     title: 'welcome',
     // providers: [SubcontractorService],
-    loadComponent: () => import('./app/home/home.component').then(module => module.HomeComponent)
+    loadComponent: () => import('./app/core/components/home/home.component').then(module => module.HomeComponent)
   },
   {
     path: 'test',
     title: 'test',
     loadComponent: () => import('./app/test/test.component').then(module => module.TestComponent),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile-selection',
+    title: 'Selection du profile',
+    loadComponent: () => import('./app/core/components/profile-selection/profile-selection.component').then(module => module.ProfileSelectionComponent),
   },
   {
     path: '**',
