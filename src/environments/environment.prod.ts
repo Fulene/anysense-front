@@ -4,5 +4,6 @@ export const environment = {
   apiHost: 'https://api.anysense.fr/api/',
   kcHost: 'https://auth.anysense.fr',
   kcRealm: 'anysense-realm',
-  kcClient: 'anysense-front'
+  kcClient: 'anysense-front',
+  kcPostLoginRedirectUri: 'https://anysense.fr/your-route'
 }

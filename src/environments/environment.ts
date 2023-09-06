@@ -4,5 +4,6 @@ export const environment = {
   apiHost: '',
   kcHost: '',
   kcRealm: '',
-  kcClient: ''
+  kcClient: '',
+  kcPostLoginRedirectUri: ''
 }

@@ -13,11 +13,7 @@ export class UserService extends BaseEntityService<AppUser> {
   public userLogged$ = new BehaviorSubject<AppUser | null>(null);
 
 
-  constructor(
-    protected override http: HttpClient,
-    private kcService: KeycloakService,
-    private notificationService: NotificationService
-  ) {
+  constructor(protected override http: HttpClient, private kcService: KeycloakService, private notificationService: NotificationService) {
     super('user', http);
   }
 
@@ -28,24 +24,19 @@ export class UserService extends BaseEntityService<AppUser> {
     if (cachedUser && cachedUser.kcId === kcId) {
       return of(cachedUser);
     } else {
-      return this.http.get<AppUser>(this.API_ENDPOINT + '/auth-id/' + kcId).pipe(
-        tap(user => this.userLogged$.next(user))
-      );
+      return this.http.get<AppUser>(this.API_ENDPOINT + '/auth-id/' + kcId).pipe(tap(user => this.userLogged$.next(user)));
     }
   }
 
   public createAppAccount(newUser: AppUser) {
-    this.kcService.getToken().then(token => {
-      this.http.post<AppUser>(this.API_ENDPOINT, newUser).subscribe({
-        next: value => {
-          this.userLogged$.next(value);
-          // todo => redirect to dashboard
-        },
-        error: err => {
-          this.notificationService.showDefaultErrorNotif();
-          console.error(err);
-        }
-      })
+    this.http.post<AppUser>(this.API_ENDPOINT, newUser).subscribe({
+      next: value => {
+        this.userLogged$.next(value);
+        // todo => redirect to dashboard
+      }, error: err => {
+        this.notificationService.showDefaultErrorNotif();
+        console.error(err);
+      }
     });
   }
 

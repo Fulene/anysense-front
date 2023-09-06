@@ -33,7 +33,13 @@ const routes: Routes = [
   {
     path: 'signup',
     title: 'Création de compte',
-    loadComponent: () => import('./app/core/components/signup/signup-workflow/signup-workflow.component').then(module => module.SignupWorkflowComponent),
+    loadComponent: () => import('./app/core/components/signup/signup-workflow-wrapper/signup-workflow-wrapper.component').then(module => module.SignupWorkflowWrapperComponent),
+  },
+  {
+    path: 'dashboard-wrapper',
+    title: 'Tableau de bord',
+    loadComponent: () => import('./app/contractor/components/contractor-dashboard/contractor-dashboard.component').then(module => module.ContractorDashboardComponent),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

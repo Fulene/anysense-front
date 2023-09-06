@@ -13,10 +13,10 @@ import { NotificationService } from "../../../../shared/services/notification.se
 @Component({
   selector: 'app-signup-workflow',
   standalone: true, imports: [CommonModule, ProfileSelectionComponent, NgOptimizedImage],
-  templateUrl: './signup-workflow.component.html',
-  styleUrls: ['./signup-workflow.component.scss']
+  templateUrl: './signup-workflow-wrapper.component.html',
+  styleUrls: ['./signup-workflow-wrapper.component.scss']
 })
-export class SignupWorkflowComponent implements OnInit {
+export class SignupWorkflowWrapperComponent implements OnInit {
   newUser!: AppUser;
 
   constructor(
@@ -40,11 +40,12 @@ export class SignupWorkflowComponent implements OnInit {
     this.kcService.isLoggedIn().then(value => {
       if (!value)
         this.kcService.register().then(() => {
-          this.kcService.getToken().then(token => {
-            console.log(token);
-            // todo => complete newUser with token data
-            this.userService.createAppAccount(this.newUser);
-          });
+          console.log("logged !")
+          // this.kcService.getToken().then(token => {
+          //   console.log(token);
+          //   // todo => complete newUser with token data
+          //   // this.userService.createAppAccount(this.newUser);
+          // });
         });
       else
         this.kcService.getToken().then(token => {
@@ -53,8 +54,8 @@ export class SignupWorkflowComponent implements OnInit {
           this.userService.getUserLogged(token).subscribe({
             next: value => {
               if (value)
-                this.userService.userLogged$.next(value);
                 // todo => redirect to dashboard
+                console.log(value);
               else
                 // todo => complete newUser with token data
                 this.userService.createAppAccount(this.newUser);

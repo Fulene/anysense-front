@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignupWorkflowComponent } from './signup-workflow.component';
+import { SignupWorkflowWrapperComponent } from './signup-workflow-wrapper.component';
 
 describe('SignupWorkflowComponent', () => {
-  let component: SignupWorkflowComponent;
-  let fixture: ComponentFixture<SignupWorkflowComponent>;
+  let component: SignupWorkflowWrapperComponent;
+  let fixture: ComponentFixture<SignupWorkflowWrapperComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [SignupWorkflowComponent]
+      imports: [SignupWorkflowWrapperComponent]
     });
-    fixture = TestBed.createComponent(SignupWorkflowComponent);
+    fixture = TestBed.createComponent(SignupWorkflowWrapperComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

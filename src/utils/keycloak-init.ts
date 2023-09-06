@@ -12,7 +12,8 @@ export function initializeKeycloak(kcService: KeycloakService) {
       initOptions: {
         onLoad: 'check-sso',
         checkLoginIframe: true,
-        checkLoginIframeInterval: 25
+        checkLoginIframeInterval: 25,
+        redirectUri: environment.kcPostLoginRedirectUri
       },
       loadUserProfileAtStartUp: true,
     });
