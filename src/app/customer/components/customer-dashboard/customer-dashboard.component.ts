@@ -1,15 +1,16 @@
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Router, RouterLink, RouterOutlet } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MediaMatcher } from "@angular/cdk/layout";
 import { MatListModule } from "@angular/material/list";
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 @Component({
   selector: 'app-customer-dashboard',
-  standalone: true, imports: [CommonModule, NgOptimizedImage, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule, RouterLink, RouterOutlet],
+  standalone: true, imports: [CommonModule, NgOptimizedImage, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule, RouterLink, RouterOutlet, MatToolbarModule, RouterLinkActive],
   templateUrl: './customer-dashboard.component.html',
   styleUrls: ['./customer-dashboard.component.scss']
 })
@@ -17,7 +18,7 @@ export class CustomerDashboardComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
   constructor(private router: Router, cdr: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 768px)');
     this._mobileQueryListener = () => cdr.detectChanges();
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }

@@ -60,3 +60,8 @@
     color: $warning !important;
   }
 }
+
+// ============================= sidenav =============================
+div.dashboard-container.is-mobile mat-sidenav {
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2) !important;
+}

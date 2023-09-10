@@ -1,31 +1,42 @@
-<nav>
-  <div class="left">
-    <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-  </div>
+<div class="dashboard-container" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="toolbar">
+    <div class="left">
+      <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="right">
+      <ul>
+        <li (click)="navigateTo('/')">Action 1</li>
+        <li (click)="navigateTo('/')">Action 2</li>
+      </ul>
+    </div>
+  </mat-toolbar>
 
-  <div class="right">
-    <ul>
-      <li (click)="navigateTo('/')">Action 1</li>
-      <li (click)="navigateTo('/')">Action 2</li>
-    </ul>
-  </div>
-</nav>
-<mat-sidenav-container class="example-sidenav-container">
-  <mat-sidenav #snav
-               [mode]="mobileQuery.matches ? 'over' : 'side'"
-               [fixedInViewport]="mobileQuery.matches"
-               fixedTopGap="56">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard/test1">Test 1</a>
-      <a mat-list-item routerLink="/dashboard/test2">Test 2</a>
-    </mat-nav-list>
-  </mat-sidenav>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav
+                 [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches"
+                 fixedTopGap="60"
+                 opened>
+      <mat-nav-list>
+        <a routerLink="/dashboard/test1" routerLinkActive="active-link">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+          <span>Test 1</span>
+        </a>
+        <a routerLink="/dashboard/test2" routerLinkActive="active-link">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+          <span>Test 2</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-sidenav-content>
+      <section class="content">
+        <router-outlet></router-outlet>
+      </section>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
 
-
-<img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
