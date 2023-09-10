@@ -38,7 +38,7 @@ const routes: Routes = [
   {
     path: 'dashboard-wrapper',
     title: 'Tableau de bord',
-    loadComponent: () => import('./app/contractor/components/contractor-dashboard/contractor-dashboard.component').then(module => module.ContractorDashboardComponent),
+    loadComponent: () => import('./app/shared/components/dashboard-wrapper/dashboard-wrapper.component').then(module => module.DashboardWrapperComponent),
     canActivate: [AuthGuard]
   },
   {

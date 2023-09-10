@@ -9,16 +9,21 @@
     </ul>
   </div>
 
-  <div class="right" *ngIf="isUserLoggedIn !== null">
-    <ng-container *ngIf="!isUserLoggedIn; else logged">
+  <div class="right" *ngIf="!isLoading">
+    <ng-container *ngIf="!isUserLoggedInKc">
       <app-button theme="primary" label="Créer mon compte" (onClick)="navigateTo('/signup')"></app-button>
       <app-button-bis label="Me connecter" (onClick)="login()"></app-button-bis>
     </ng-container>
 
-<!--   todo : to remove   -->
-    <ng-template #logged>
-      <span></span>
+    <ng-container *ngIf="isUserLoggedInKc && !userLoggedInApp">
+      <app-button-bis label="Compléter mon profile" (onClick)="navigateTo('/signup')"></app-button-bis>
       <app-button-bis label="Se déconnecter" (onClick)="logout()"></app-button-bis>
-    </ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="userLoggedInApp">
+      <app-button-bis label="Tableau de bord" (onClick)="navigateTo('/dashboard-wrapper')"></app-button-bis>
+      <!--   todo : to remove   -->
+      <app-button-bis label="Se déconnecter" (onClick)="logout()"></app-button-bis>
+    </ng-container>
   </div>
 </nav>

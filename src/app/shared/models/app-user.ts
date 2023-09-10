@@ -3,12 +3,9 @@ import { UserProfile } from "./user-profile";
 export class AppUser {
 
   kcId?: string;
-  name?: string;
   firstname?: string;
+  lastname?: string;
   email?: string;
   profiles: UserProfile[] = [];
-
-  constructor(data?: Partial<AppUser>) {
-  }
 
 }

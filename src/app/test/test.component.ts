@@ -3,18 +3,14 @@ import { KeycloakService } from "keycloak-angular";
 import { environment } from "../../environments/environment";
 import { Subscription, Unsubscribable } from "rxjs";
 import { NotificationService } from "../shared/services/notification.service";
-import { NgForOf, NgIf } from "@angular/common";
+import { JsonPipe, NgForOf, NgIf } from "@angular/common";
 import { AppUser } from "../shared/models/app-user";
 import { UserService } from "../shared/services/user.service";
 
 @Component({
   selector: 'app-test',
   standalone: true,
-  templateUrl: './test.component.html',
-  imports: [
-    NgIf,
-    NgForOf
-  ],
+  templateUrl: './test.component.html', imports: [NgIf, NgForOf, JsonPipe],
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit, Unsubscribable {
@@ -24,7 +20,7 @@ export class TestComponent implements OnInit, Unsubscribable {
 
   constructor(
     private kcService: KeycloakService,
-    private userService: UserService,
+    public userService: UserService,
     private notificationService: NotificationService
   ) {}
 
@@ -37,7 +33,7 @@ export class TestComponent implements OnInit, Unsubscribable {
     this.subscription.add(
       this.userService.findAll().subscribe({
         next: value => this.users = value,
-        error: err => console.log(err)
+        error: err => console.error(err)
       })
     );
   }

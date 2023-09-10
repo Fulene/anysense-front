@@ -1,4 +1,5 @@
-<h1>test auth</h1>
+<h1>test auth !!!</h1>
+{{ userService.userLogged | json }}
 <div>
   <h3>{{ userName }}</h3>
   <button (click)="logout()">Logout</button>
@@ -8,7 +9,7 @@
   <pre>{{ users.length }}</pre>
   <div *ngFor="let user of users">
     <p>{{ user.kcId }}</p>
-    <p>{{ user.name }}</p>
+    <p>{{ user.lastname }}</p>
     <p>{{ user.firstname }}</p>
     <p>{{ user.email }}</p>
     <p>{{ user.profiles }}</p>
