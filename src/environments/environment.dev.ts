@@ -5,5 +5,5 @@ export const environment = {
   kcHost: 'http://localhost:8089/',
   kcRealm: 'anysense-realm',
   kcClient: 'anysense-front',
-  kcPostLoginRedirectUri: 'http://localhost:4200/dashboard-wrapper'
+  kcPostLoginRedirectUri: 'http://localhost:4200/dashboard'
 }

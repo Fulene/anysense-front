@@ -37,7 +37,7 @@ export class SignupWorkflowWrapperComponent implements OnInit {
         localStorage.setItem('appUserProfileTemp', JSON.stringify(this.profile));
         this.kcService.isLoggedIn().then(value => {
             if (!value) this.kcService.register({redirectUri: environment.kcPostLoginRedirectUri});
-            else this.navigateTo("/dashboard-wrapper");
+            else this.navigateTo("/dashboard");
         });
     }
 

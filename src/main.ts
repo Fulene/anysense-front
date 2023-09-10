@@ -11,6 +11,7 @@ import { AuthGuard } from "./app/shared/guards/AuthGuard";
 import { initializeKeycloak } from "./utils/keycloak-init";
 import { authInterceptor } from "./app/shared/interceptors/auth-interceptor";
 import { CommonModule } from "@angular/common";
+import { contractorDashboardRoutes } from "./app/contractor/contractor-dashboard-routes";
 
 const routes: Routes = [
   {
@@ -36,10 +37,11 @@ const routes: Routes = [
     loadComponent: () => import('./app/core/components/signup/signup-workflow-wrapper/signup-workflow-wrapper.component').then(module => module.SignupWorkflowWrapperComponent),
   },
   {
-    path: 'dashboard-wrapper',
+    path: 'dashboard',
     title: 'Tableau de bord',
     loadComponent: () => import('./app/shared/components/dashboard-wrapper/dashboard-wrapper.component').then(module => module.DashboardWrapperComponent),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: contractorDashboardRoutes
   },
   {
     path: '**',

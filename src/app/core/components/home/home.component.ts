@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgOptimizedImage } from "@angular/common";
 
 @Component({
@@ -11,5 +11,4 @@ import { NgOptimizedImage } from "@angular/common";
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
 }

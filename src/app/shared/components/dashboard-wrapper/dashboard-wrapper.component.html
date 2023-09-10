@@ -1,3 +1,2 @@
-<img (click)="navigateTo('/')" ngSrc="../../../../assets/images/core/logo1.jpg" alt="logo" priority="true" height="40" width="167">
-<p *ngIf="isProfile(ProfileType.CUSTOMER)">DB Customer</p>
-<p *ngIf="isProfile(ProfileType.CONTRACTOR)">DB Contractor</p>
+<app-customer-dashboard *ngIf="isProfile(ProfileType.CUSTOMER)"></app-customer-dashboard>
+<app-contractor-dashboard *ngIf="isProfile(ProfileType.CONTRACTOR)"></app-contractor-dashboard>

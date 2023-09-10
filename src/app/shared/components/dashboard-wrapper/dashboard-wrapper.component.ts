@@ -9,10 +9,17 @@ import { KeycloakProfile } from "keycloak-js";
 import { Subscription } from "rxjs";
 import { UserProfile } from "../../models/user-profile";
 import { ProfileType } from "../../models/enums/profile-type";
+import {
+  CustomerDashboardComponent
+} from "../../../customer/components/customer-dashboard/customer-dashboard.component";
+import {
+  ContractorDashboardComponent
+} from "../../../contractor/components/contractor-dashboard/contractor-dashboard.component";
 
 @Component({
     selector: 'app-dashboard-wrapper',
-    standalone: true, imports: [CommonModule, NgOptimizedImage],
+    standalone: true,
+  imports: [CommonModule, NgOptimizedImage, CustomerDashboardComponent, ContractorDashboardComponent],
     templateUrl: './dashboard-wrapper.component.html',
     styleUrls: ['./dashboard-wrapper.component.scss']
 })
@@ -62,7 +69,6 @@ export class DashboardWrapperComponent implements OnInit, OnDestroy {
             );
         } else this.onErrorOccurred("Profile introuvable");
     }
-    // http://localhost:8089/realms/anysense-realm/protocol/openid-connect/auth?client_id=anysense-front&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Fdashboard-wrapper&state=d920c875-6b4a-4b29-8802-ddcfe08302d5&response_mode=fragment&response_type=code&scope=openid&nonce=3d657494-3005-4835-8885-8995befb0ee4
 
     private initNewAppUser(userProfile: UserProfile): AppUser {
         const appUser = new AppUser();
