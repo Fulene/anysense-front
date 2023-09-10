@@ -9,7 +9,6 @@ import { ContractorProfile } from "../../../../contractor/models/contractor-prof
 import { UserService } from "../../../../shared/services/user.service";
 import { NotificationService } from "../../../../shared/services/notification.service";
 import { environment } from "../../../../../environments/environment";
-import { Subscription } from "rxjs";
 import { UserProfile } from "../../../../shared/models/user-profile";
 
 @Component({
@@ -22,7 +21,7 @@ import { UserProfile } from "../../../../shared/models/user-profile";
 export class SignupWorkflowWrapperComponent implements OnInit {
     profile?: UserProfile;
 
-    constructor(private router: Router, public kcService: KeycloakService, private userService: UserService, private notificationService: NotificationService) {
+    constructor(private router: Router, public kcService: KeycloakService) {
     }
 
     ngOnInit(): void {
