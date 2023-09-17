@@ -65,3 +65,15 @@
 div.dashboard-container.is-mobile mat-sidenav {
   box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2) !important;
 }
+
+div.dashboard-container .mat-sidenav-container .mat-sidenav .mat-drawer-inner-container {
+  overflow-x: hidden !important;
+}
+
+.dashboard-container.is-mobile mat-sidenav-container.opened-snav .mat-drawer-backdrop.mat-drawer-shown {
+  background-color: #33333360 !important;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-dark-backdrop {
+  background-color: rgba(0, 0, 0, 0.6); // changez la valeur de l'opacité si nécessaire
+}

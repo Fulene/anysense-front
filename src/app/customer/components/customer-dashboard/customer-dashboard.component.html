@@ -1,8 +1,8 @@
 <div class="dashboard-container" [class.is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="toolbar">
-    <div class="left">
+  <mat-toolbar color="primary">
+    <div class="left" [class.hidden]="!closedSidenavMode">
       <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
-      <button mat-icon-button (click)="snav.toggle()">
+      <button mat-icon-button (click)="toggleSidenavMode()">
         <mat-icon>menu</mat-icon>
       </button>
     </div>
@@ -14,13 +14,20 @@
     </div>
   </mat-toolbar>
 
-  <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-container class="sidenav-container" [ngClass]="closedSidenavMode ? 'closed-snav' : 'opened-snav'" >
     <mat-sidenav #snav
                  [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches"
+                 (closedStart)="onSnavClosed()"
                  fixedTopGap="60"
                  opened>
       <mat-nav-list>
+        <header>
+          <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
+          <button mat-icon-button (click)="toggleSidenavMode()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </header>
         <a routerLink="/dashboard/test1" routerLinkActive="active-link">
           <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
           <span>Test 1</span>
