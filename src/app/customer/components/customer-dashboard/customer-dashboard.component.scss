@@ -1,69 +1,6 @@
 @import "src/styles/palette";
 
-div.dashboard-container.is-mobile {
-  mat-toolbar {
-    position: fixed;
-    z-index: 2;
-
-    div.hidden {
-      opacity: 0;
-    }
-  }
-
-  mat-sidenav-container.sidenav-container {
-    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-       `<body>` to be our scrolling element for mobile layouts. */
-    flex: 1 0 auto;
-    transition: z-index .3s;
-
-    mat-sidenav {
-      top: 0 !important;
-
-      mat-nav-list {
-        header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 20px;
-
-          img {
-            margin-left: 20px;
-          }
-
-          button {
-            margin-right: 4px;
-          }
-        }
-      }
-    }
-
-    mat-sidenav-content {
-      margin-left: initial !important;
-      margin-top: 60px;
-    }
-  }
-
-  mat-sidenav-container.opened-snav {
-    z-index: 3;
-
-    mat-sidenav {
-      width: 320px !important;
-    }
-
-    div.left {
-      opacity: 0;
-    }
-  }
-
-  mat-sidenav-container.closed-snav {
-    z-index: 1;
-
-    mat-sidenav {
-      width: 0 !important;
-    }
-  }
-}
-
+// === Desktop mode ===
 div.dashboard-container {
   display: flex;
   flex-direction: column;
@@ -102,6 +39,7 @@ div.dashboard-container {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0;
 
         li {
           position: relative;
@@ -109,6 +47,10 @@ div.dashboard-container {
           margin-right: 25px;
           cursor: pointer;
           transition: all 0.1s ease;
+
+          &:last-of-type {
+            margin-right: 0 !important;
+          }
 
           &::after {
             content: '';
@@ -226,6 +168,91 @@ div.dashboard-container {
     inset 5px 0 5px -5px rgba(0, 0, 0, 0.1); /* Ombre à gauche */
   }
 
+}
+
+
+// === Mobile mode ===
+div.dashboard-container.is-mobile {
+  mat-toolbar {
+    position: fixed;
+    z-index: 2;
+    padding: 6px 18px 6px 0;
+
+    div.hidden {
+      opacity: 0;
+    }
+
+    div.left {
+      justify-content: flex-end;
+      flex-direction: row-reverse;
+
+      button {
+        padding-right: 0;
+      }
+    }
+
+    div.right {
+      ul {
+        li {
+          margin-right: 14px;
+        }
+      }
+    }
+
+  }
+
+  mat-sidenav-container.sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+    transition: z-index .3s;
+
+    mat-sidenav {
+      top: 0 !important;
+
+      mat-nav-list {
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+
+          img {
+            margin-left: 20px;
+          }
+
+          button {
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
+    mat-sidenav-content {
+      margin-left: initial !important;
+      margin-top: 60px;
+    }
+  }
+
+  mat-sidenav-container.opened-snav {
+    z-index: 3;
+
+    mat-sidenav {
+      width: 320px !important;
+    }
+
+    div.left {
+      opacity: 0;
+    }
+  }
+
+  mat-sidenav-container.closed-snav {
+    z-index: 1;
+
+    mat-sidenav {
+      width: 0 !important;
+    }
+  }
 }
 
 
