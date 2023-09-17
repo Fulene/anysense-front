@@ -7,54 +7,21 @@ import { MatSidenav, MatSidenavModule } from "@angular/material/sidenav";
 import { MediaMatcher } from "@angular/cdk/layout";
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { BaseDashboardComponent } from "../../../shared/components/base-dashboard/base-dashboard.component";
 
 @Component({
   selector: 'app-customer-dashboard',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule, RouterLink, RouterOutlet, MatToolbarModule, RouterLinkActive],
+  imports: [CommonModule, NgOptimizedImage, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule, RouterLink, RouterOutlet, MatToolbarModule, RouterLinkActive, BaseDashboardComponent],
   templateUrl: './customer-dashboard.component.html',
   styleUrls: ['./customer-dashboard.component.scss']
 })
-export class CustomerDashboardComponent implements OnInit, OnDestroy {
-  mobileQuery: MediaQueryList;
-  closedSidenavMode = false;
-  @ViewChild('snav') sidenav?: MatSidenav;
+export class CustomerDashboardComponent {
 
-  constructor(private router: Router, cdr: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 768px)');
-    this._mobileQueryListener = () => cdr.detectChanges();
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
-  }
-
-  ngOnInit(): void {
-    this.navigateTo("/dashboard/test1");
-    if (this.mobileQuery.matches) {
-      this.closedSidenavMode = true;
-    }
-  }
-
-  private readonly _mobileQueryListener: () => void;
-
-  toggleSidenavMode(): void {
-    this.closedSidenavMode = !this.closedSidenavMode;
-    if (this.closedSidenavMode) {
-      this.sidenav!.close();
-    } else {
-      this.sidenav!.open();
-    }
-  }
-
-  onSnavClosed() {
-    this.closedSidenavMode = true
-  }
-
-  navigateTo(path: string) {
-    this.router.navigate([path]);
-  }
-
-  ngOnDestroy() {
-    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
-  }
+  links = [
+    { path: '/dashboard/customer/test1', label: 'Test 1', icon: 'home' },
+    { path: '/dashboard/customer/test2', label: 'Test 2', icon: 'home' },
+  ];
 
 }
 

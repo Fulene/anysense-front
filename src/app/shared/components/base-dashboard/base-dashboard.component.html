@@ -1,0 +1,45 @@
+<div class="dashboard-container" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary">
+    <div class="left" [class.hidden]="!closedSidenavMode">
+      <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
+      <button mat-icon-button (click)="toggleSidenavMode()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="right">
+      <ul>
+        <li (click)="navigateTo('/')">Action 1</li>
+        <li (click)="navigateTo('/')">Action 2</li>
+      </ul>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container" [ngClass]="closedSidenavMode ? 'closed-snav' : 'opened-snav'" >
+    <mat-sidenav #snav
+                 [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches"
+                 (closedStart)="onSnavClosed()"
+                 fixedTopGap="60"
+                 opened>
+      <mat-nav-list>
+        <header>
+          <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
+          <button mat-icon-button (click)="toggleSidenavMode()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </header>
+        <a *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="active-link">
+          <mat-icon [attr.aria-label]="link.label" [fontIcon]="link.icon"></mat-icon>
+          <span>{{ link.label }}</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <section class="content">
+        <router-outlet></router-outlet>
+      </section>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
