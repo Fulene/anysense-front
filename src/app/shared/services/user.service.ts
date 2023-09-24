@@ -12,7 +12,7 @@ export class UserService extends BaseEntityService<AppUser> {
 
 
   constructor(protected override http: HttpClient) {
-    super('user', http);
+    super('users', http);
   }
 
 
