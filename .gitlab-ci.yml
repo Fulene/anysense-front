@@ -29,7 +29,7 @@ dockerize_job:
   script:
     - if [ "$CI_COMMIT_BRANCH" == "staging" ]; then CONFIGURATION="staging"; fi
     - apk add --no-cache docker-cli-compose
-    - docker build -t anysense-front:latest .
+    - docker build --build-arg CONFIGURATION=$CONFIGURATION -t anysense-front:latest .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - IMAGE_TAG=$(if [ "$CI_COMMIT_BRANCH" = "main" ]; then echo "latest"; else echo "latest-staging"; fi)
     - docker tag anysense-front:latest $CI_REGISTRY_IMAGE/anysense-front:$IMAGE_TAG
