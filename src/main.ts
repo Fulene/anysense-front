@@ -41,12 +41,12 @@ bootstrapApplication(AppComponent, {
     ),
     provideAnimations(),
     provideRouter(routes),
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService]
-    }
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializeKeycloak,
+    //   multi: true,
+    //   deps: [KeycloakService]
+    // }
   ]
 })
   .catch(err => console.error(err));
