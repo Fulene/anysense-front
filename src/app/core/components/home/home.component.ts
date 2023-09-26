@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgOptimizedImage } from "@angular/common";
+import { environment } from "../../../../environments/environment";
 
 @Component({
     selector: 'app-home',
@@ -11,4 +12,5 @@ import { NgOptimizedImage } from "@angular/common";
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  protected readonly environment = environment;
 }
