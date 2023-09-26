@@ -56,6 +56,27 @@
               ],
               "outputHashing": "all"
             },
+            "staging": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -78,6 +99,9 @@
           "configurations": {
             "production": {
               "browserTarget": "anysense_front:build:production"
+            },
+            "staging": {
+              "browserTarget": "anysense_front:build:staging"
             },
             "development": {
               "browserTarget": "anysense_front:build:development"

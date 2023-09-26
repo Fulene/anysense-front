@@ -16,6 +16,7 @@ build_job:
     - npm run build:ssr --configuration=production
   only:
     - main
+    - staging
 
 dockerize_job:
   stage: dockerize
@@ -24,18 +25,51 @@ dockerize_job:
     - docker:dind
   variables:
     DOCKER_HOST: tcp://docker:2375
+    CONFIGURATION: "production"
   script:
+    - if [ "$CI_COMMIT_BRANCH" == "staging" ]; then CONFIGURATION="staging"; fi
     - apk add --no-cache docker-cli-compose
     - docker build -t anysense-front:latest .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker tag anysense-front:latest $CI_REGISTRY_IMAGE/anysense-front:latest
+    - IMAGE_TAG=$(if [ "$CI_COMMIT_BRANCH" = "main" ]; then echo "latest"; else echo "latest-staging"; fi)
+    - docker tag anysense-front:latest $CI_REGISTRY_IMAGE/anysense-front:$IMAGE_TAG
     - docker tag anysense-front:latest $CI_REGISTRY_IMAGE/anysense-front:$CI_COMMIT_SHORT_SHA
-    - docker push $CI_REGISTRY_IMAGE/anysense-front:latest
+    - docker push $CI_REGISTRY_IMAGE/anysense-front:$IMAGE_TAG
     - docker push $CI_REGISTRY_IMAGE/anysense-front:$CI_COMMIT_SHORT_SHA
   only:
     - main
+    - staging
 
-deploy_job:
+deploy_staging_job:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan $SSH_IP_SERVER >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - |
+      ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $SSH_USER@$SSH_IP_SERVER "
+        sudo docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com &&
+        sudo docker pull ${CI_REGISTRY_IMAGE}/anysense-front:latest-staging &&
+        if sudo docker ps -a | grep anysense-front-staging; then
+            sudo docker rm -f anysense-front-staging;
+        fi &&
+        cd ~/docker/anysense-front &&
+        sudo CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE ANYSENSE_VPS_NET=$ANYSENSE_VPS_NET docker-compose -f docker-compose-staging.yml -p anysense-front-staging up -d
+      "
+  environment:
+    name: staging
+  only:
+    - staging
+
+deploy_prod_job:
   stage: deploy
   image: docker:latest
   services:

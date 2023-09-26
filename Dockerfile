@@ -3,5 +3,6 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npm run build:ssr --configuration=production
+ARG CONFIGURATION=production
+RUN npm run build:ssr --configuration=$CONFIGURATION
 CMD ["node", "dist/anysense_front/server/main.js"]
