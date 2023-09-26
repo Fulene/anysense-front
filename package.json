@@ -11,6 +11,7 @@
     "dev:ssr:prod": "ng run anysense_front:serve-ssr:production",
     "serve:ssr": "node dist/anysense_front/server/main.js",
     "build:ssr": "ng build && ng run anysense_front:server",
+    "build:ssr:staging": "ng build --configuration=staging && ng run anysense_front:server:staging",
     "prerender": "ng run anysense_front:prerender"
   },
   "private": true,
