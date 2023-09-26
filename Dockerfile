@@ -4,5 +4,5 @@ COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
 ARG CONFIGURATION=production
-RUN npm run build:ssr --configuration=$CONFIGURATION
+RUN npm run build:ssr --configuration=staging
 CMD ["node", "dist/anysense_front/server/main.js"]
