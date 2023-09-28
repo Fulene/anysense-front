@@ -146,6 +146,9 @@
             "production": {
               "outputHashing": "media"
             },
+            "staging": {
+              "outputHashing": "media"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -162,6 +165,10 @@
             "development": {
               "browserTarget": "anysense_front:build:development",
               "serverTarget": "anysense_front:server:development"
+            },
+            "staging": {
+              "browserTarget": "anysense_front:build:staging",
+              "serverTarget": "anysense_front:server:staging"
             },
             "production": {
               "browserTarget": "anysense_front:build:production",
@@ -181,6 +188,10 @@
             "production": {
               "browserTarget": "anysense_front:build:production",
               "serverTarget": "anysense_front:server:production"
+            },
+            "staging": {
+              "browserTarget": "anysense_front:build:staging",
+              "serverTarget": "anysense_front:server:staging"
             },
             "development": {
               "browserTarget": "anysense_front:build:development",
