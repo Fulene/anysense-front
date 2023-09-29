@@ -1,5 +1,4 @@
 export const environment = {
-  production: false,
   appUri: 'https://staging.anysense.fr',
   apiHost: 'https://api-staging.anysense.fr/api/',
   kcHost: 'https://auth.anysense.fr',

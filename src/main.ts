@@ -7,7 +7,7 @@ import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { provideRouter, Routes } from "@angular/router";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { KeycloakAngularModule, KeycloakService } from "keycloak-angular";
-import { AuthGuard } from "./app/shared/guards/AuthGuard";
+import { AuthGuard } from "./app/shared/guards/auth.guard";
 import { initializeKeycloak } from "./utils/keycloak-init";
 import { authInterceptor } from "./app/shared/interceptors/auth-interceptor";
 import { CommonModule } from "@angular/common";
@@ -46,7 +46,7 @@ const routes: Routes = [
   {
     path: '**',
     title: 'Page not found',
-    loadComponent: () => import('./app/page-not-found/page-not-found.component').then(module => module.PageNotFoundComponent)
+    loadComponent: () => import('./app/core/components/not-found/not-found.component').then(module => module.NotFoundComponent)
   }
 ];
 
