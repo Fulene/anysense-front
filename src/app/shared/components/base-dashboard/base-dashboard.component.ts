@@ -7,11 +7,12 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { BurgerMenuComponent } from "../burger-menu/burger-menu.component";
 
 @Component({
   selector: 'app-base-dashboard',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, NgOptimizedImage, RouterLink, RouterLinkActive, RouterOutlet],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, NgOptimizedImage, RouterLink, RouterLinkActive, RouterOutlet, BurgerMenuComponent],
   templateUrl: './base-dashboard.component.html',
   styleUrls: ['./base-dashboard.component.scss']
 })

@@ -2,9 +2,7 @@
   <mat-toolbar color="primary">
     <div class="left" [class.hidden]="!closedSidenavMode">
       <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
-      <button mat-icon-button (click)="toggleSidenavMode()">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <app-burger-menu [disableAnimation]="mobileQuery.matches" [isActive]="!closedSidenavMode" (onClick)="toggleSidenavMode()"></app-burger-menu>
     </div>
     <div class="right">
       <ul>

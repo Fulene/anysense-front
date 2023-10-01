@@ -25,10 +25,6 @@ div.dashboard-container {
       opacity: 1;
       transition: 1s;
 
-      button {
-
-      }
-
       img {
         cursor: pointer;
       }
@@ -176,7 +172,7 @@ div.dashboard-container.is-mobile {
   mat-toolbar {
     position: fixed;
     z-index: 2;
-    padding: 6px 18px 6px 0;
+    padding: 6px 18px 6px 18px;
 
     div.hidden {
       opacity: 0;
@@ -186,8 +182,8 @@ div.dashboard-container.is-mobile {
       justify-content: flex-end;
       flex-direction: row-reverse;
 
-      button {
-        padding-right: 0;
+      app-burger-menu {
+        margin-right: 15px;
       }
     }
 

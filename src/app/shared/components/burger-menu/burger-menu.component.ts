@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class BurgerMenuComponent {
   @Input() isActive = false;
+  @Input() disableAnimation = false;
   @Output() onClick = new EventEmitter<any>();
 
   onBurgerClicked() {

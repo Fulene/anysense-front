@@ -11,6 +11,10 @@ mat-toolbar {
     app-burger-menu {
       margin-right: 20px;
     }
+
+    img {
+      cursor: pointer;
+    }
   }
 
   mat-expansion-panel {
