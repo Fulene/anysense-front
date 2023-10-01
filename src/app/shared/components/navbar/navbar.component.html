@@ -1,29 +1,56 @@
-<nav>
-  <div class="left">
-    <img (click)="navigateTo('/')" ngSrc="../../../../assets/images/core/logo1.jpg" alt="logo" priority="true" height="40" width="167">
+<div *ngIf="mobileQuery.matches" class="navbar-mobile-container">
+  <mat-toolbar class="mobile">
+    <app-burger-menu (onClick)="panel.toggle()"></app-burger-menu>
+    <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
+  </mat-toolbar>
+  <mat-expansion-panel #panel hideToggle>
     <ul>
-      <li (click)="navigateTo('/test')">Entreprises</li>
-      <li (click)="navigateTo('/')">Prestataires</li>
-      <li (click)="navigateTo('/')">Solutions</li>
-      <li (click)="navigateTo('/')">Ressources</li>
+      <li (click)="navigateTo(link.path)" *ngFor="let link of links">{{ link.label }}</li>
+    </ul>
+    <div *ngIf="!isLoading">
+      <ng-container *ngIf="!isUserLoggedInKc">
+        <app-button (onClick)="navigateTo('/signup')" label="Créer mon compte" theme="primary"></app-button>
+        <app-button-bis (onClick)="login()" label="Me connecter"></app-button-bis>
+      </ng-container>
+
+      <ng-container *ngIf="isUserLoggedInKc && !userLoggedInApp">
+        <app-button-bis (onClick)="navigateTo('/signup')" label="Compléter mon profile"></app-button-bis>
+        <app-button-bis (onClick)="logout()" label="Se déconnecter"></app-button-bis>
+      </ng-container>
+
+      <ng-container *ngIf="userLoggedInApp">
+        <app-button-bis (onClick)="navigateTo('/dashboard')" label="Tableau de bord"></app-button-bis>
+        <!--   todo : to remove   -->
+        <app-button-bis (onClick)="logout()" label="Se déconnecter"></app-button-bis>
+      </ng-container>
+    </div>
+  </mat-expansion-panel>
+</div>
+
+<mat-toolbar class="desktop" *ngIf="!mobileQuery.matches">
+  <div class="left">
+    <img (click)="navigateTo('/')" alt="logo" height="40" ngSrc="../../../../assets/images/core/logo1.jpg"
+         priority="true" width="167">
+    <ul>
+      <li (click)="navigateTo(link.path)" *ngFor="let link of links">{{ link.label }}</li>
     </ul>
   </div>
 
-  <div class="right" *ngIf="!isLoading">
+  <div *ngIf="!isLoading" class="right">
     <ng-container *ngIf="!isUserLoggedInKc">
-      <app-button theme="primary" label="Créer mon compte" (onClick)="navigateTo('/signup')"></app-button>
-      <app-button-bis label="Me connecter" (onClick)="login()"></app-button-bis>
+      <app-button (onClick)="navigateTo('/signup')" label="Créer mon compte" theme="primary"></app-button>
+      <app-button-bis (onClick)="login()" label="Me connecter"></app-button-bis>
     </ng-container>
 
     <ng-container *ngIf="isUserLoggedInKc && !userLoggedInApp">
-      <app-button-bis label="Compléter mon profile" (onClick)="navigateTo('/signup')"></app-button-bis>
-      <app-button-bis label="Se déconnecter" (onClick)="logout()"></app-button-bis>
+      <app-button-bis (onClick)="navigateTo('/signup')" label="Compléter mon profile"></app-button-bis>
+      <app-button-bis (onClick)="logout()" label="Se déconnecter"></app-button-bis>
     </ng-container>
 
     <ng-container *ngIf="userLoggedInApp">
-      <app-button-bis label="Tableau de bord" (onClick)="navigateTo('/dashboard')"></app-button-bis>
+      <app-button-bis (onClick)="navigateTo('/dashboard')" label="Tableau de bord"></app-button-bis>
       <!--   todo : to remove   -->
-      <app-button-bis label="Se déconnecter" (onClick)="logout()"></app-button-bis>
+      <app-button-bis (onClick)="logout()" label="Se déconnecter"></app-button-bis>
     </ng-container>
   </div>
-</nav>
+</mat-toolbar>
