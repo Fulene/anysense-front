@@ -9,17 +9,10 @@ mat-toolbar {
 
   mat-toolbar {
     padding: 6px 24px;
-    position: relative;
-
-    app-burger-menu {
-      margin-right: 20px;
-      position: absolute;
-      left: 24px;
-    }
 
     img {
       cursor: pointer;
-      margin: auto;
+      margin-left: 14px;
     }
   }
 
