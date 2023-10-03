@@ -23,6 +23,13 @@ a, button {
   font-family: inherit;
   color: inherit;
   text-decoration: none;
+  outline: none !important;
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 h1 {

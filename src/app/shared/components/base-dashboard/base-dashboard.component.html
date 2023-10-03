@@ -1,35 +1,37 @@
-<div class="dashboard-container" [class.is-mobile]="mobileQuery.matches">
+<div class="dashboard-container" [class.is-mobile]="isMobileMode">
   <mat-toolbar color="primary">
     <div class="left" [class.hidden]="!closedSidenavMode">
       <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo_anysense_hrztlPlan_resized.png" priority="true" height="35" width="146">
-      <app-burger-menu [disableAnimation]="mobileQuery.matches" [isActive]="!closedSidenavMode" (onClick)="toggleSidenavMode()"></app-burger-menu>
-    </div>
-    <div class="right">
-      <ul>
-        <li (click)="navigateTo('/')">Action 1</li>
-        <li (click)="navigateTo('/')">Action 2</li>
-      </ul>
+      <app-burger-menu [disableAnimation]="isMobileMode" [isActive]="!closedSidenavMode" (onClick)="toggleSidenavMode()"></app-burger-menu>
     </div>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container" [ngClass]="closedSidenavMode ? 'closed-snav' : 'opened-snav'" >
     <mat-sidenav #snav
-                 [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches"
+                 [mode]="isMobileMode ? 'over' : 'side'"
+                 [fixedInViewport]="isMobileMode"
                  (closedStart)="onSnavClosed()"
                  fixedTopGap="60"
                  opened>
       <mat-nav-list>
-        <header>
-          <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo_anysense_hrztlPlan_resized.png" priority="true" height="35" width="146">
-          <button mat-icon-button (click)="toggleSidenavMode()">
-            <mat-icon>close</mat-icon>
-          </button>
-        </header>
-        <a *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="active-link">
-          <mat-icon [attr.aria-label]="link.label" [fontIcon]="link.icon"></mat-icon>
-          <span>{{ link.label }}</span>
-        </a>
+        <div class="top">
+          <header>
+            <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo_anysense_hrztlPlan_resized.png" priority="true" height="35" width="146">
+            <button mat-icon-button (click)="toggleSidenavMode()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </header>
+          <a *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="active-link" (click)="toggleSidenavMode()">
+            <mat-icon [attr.aria-label]="link.label" [fontIcon]="link.icon"></mat-icon>
+            <span>{{ link.label }}</span>
+          </a>
+        </div>
+        <div class="bottom">
+          <a (click)="logout()">
+            <mat-icon label="disconnect" fontIcon="keyboard_backspace"></mat-icon>
+            <span>Se déconnecter</span>
+          </a>
+        </div>
       </mat-nav-list>
     </mat-sidenav>
 

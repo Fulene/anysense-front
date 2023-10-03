@@ -15,13 +15,10 @@
 
       <ng-container *ngIf="isUserLoggedInKc && !userLoggedInApp">
         <app-button-bis (onClick)="navigateTo('/signup')" label="Compléter mon profile"></app-button-bis>
-        <app-button-bis (onClick)="logout()" label="Se déconnecter"></app-button-bis>
       </ng-container>
 
       <ng-container *ngIf="userLoggedInApp">
         <app-button-bis (onClick)="navigateTo('/dashboard')" label="Tableau de bord"></app-button-bis>
-        <!--   todo : to remove   -->
-        <app-button-bis (onClick)="logout()" label="Se déconnecter"></app-button-bis>
       </ng-container>
     </div>
   </mat-expansion-panel>
@@ -44,13 +41,10 @@
 
     <ng-container *ngIf="isUserLoggedInKc && !userLoggedInApp">
       <app-button-bis (onClick)="navigateTo('/signup')" label="Compléter mon profile"></app-button-bis>
-      <app-button-bis (onClick)="logout()" label="Se déconnecter"></app-button-bis>
     </ng-container>
 
     <ng-container *ngIf="userLoggedInApp">
       <app-button-bis (onClick)="navigateTo('/dashboard')" label="Tableau de bord"></app-button-bis>
-      <!--   todo : to remove   -->
-      <app-button-bis (onClick)="logout()" label="Se déconnecter"></app-button-bis>
     </ng-container>
   </div>
 </mat-toolbar>

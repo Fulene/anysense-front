@@ -8,24 +8,35 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { BurgerMenuComponent } from "../burger-menu/burger-menu.component";
+import { ButtonBisComponent } from "../button-bis/button-bis.component";
+import { environment } from "../../../../environments/environment";
+import { KeycloakService } from "keycloak-angular";
+import { UserService } from "../../services/user.service";
+import { fromEvent, map, Observable, startWith, Subscription } from "rxjs";
 
 @Component({
   selector: 'app-base-dashboard',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, NgOptimizedImage, RouterLink, RouterLinkActive, RouterOutlet, BurgerMenuComponent],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, NgOptimizedImage, RouterLink, RouterLinkActive, RouterOutlet, BurgerMenuComponent, ButtonBisComponent],
   templateUrl: './base-dashboard.component.html',
   styleUrls: ['./base-dashboard.component.scss']
 })
 export class BaseDashboardComponent implements OnInit, OnDestroy {
   @Input() links: Array<{ path: string, label: string, icon: string }> = [];
-  mobileQuery: MediaQueryList;
-  closedSidenavMode = false;
   @ViewChild('snav') sidenav?: MatSidenav;
 
-  constructor(private router: Router, cdr: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 768px)');
-    this._mobileQueryListener = () => cdr.detectChanges();
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+  closedSidenavMode = false;
+  mediaSubscription: Subscription;
+  isMobileMode: boolean = true;
+
+  constructor (private router: Router,
+              cdr: ChangeDetectorRef,
+              media: MediaMatcher,
+              private kcService: KeycloakService,
+              private userService: UserService) {
+    this.mediaSubscription = this.media('(max-width: 768px)').subscribe((matches) =>
+      this.isMobileMode = matches
+    );
   }
 
   ngOnInit(): void {
@@ -35,12 +46,24 @@ export class BaseDashboardComponent implements OnInit, OnDestroy {
       this.navigateTo(this.links[0].path);
     }
 
-    if (this.mobileQuery.matches) {
+    if (this.isMobileMode) {
       this.closedSidenavMode = true;
     }
   }
 
-  private readonly _mobileQueryListener: () => void;
+  logout() {
+    this.kcService.logout(environment.appUri).then(() => {
+      this.userService.userLogged = undefined;
+    });
+  }
+
+  media(query: string): Observable<boolean> {
+    const mediaQuery = window.matchMedia(query);
+    return fromEvent<MediaQueryList>(mediaQuery, 'change').pipe(
+      startWith(mediaQuery),
+      map((list: MediaQueryList) => list.matches)
+    );
+  }
 
   toggleSidenavMode(): void {
     this.closedSidenavMode = !this.closedSidenavMode;
@@ -60,7 +83,7 @@ export class BaseDashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
+    this.mediaSubscription.unsubscribe();
   }
 
 }

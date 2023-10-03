@@ -10,7 +10,7 @@ import { UserService } from "../../services/user.service";
 import { Subscription } from "rxjs";
 import { AppUser } from "../../models/app-user";
 import { MediaMatcher } from "@angular/cdk/layout";
-import { MatSidenav, MatSidenavModule } from "@angular/material/sidenav";
+import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
@@ -31,8 +31,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isUserLoggedInKc?: boolean;
   userLoggedInApp?: AppUser;
   mobileQuery: MediaQueryList;
-  // closedSidenavMode = false;
-  // @ViewChild('snav') sidenav?: MatSidenav;
   links = [{path: "/path", label: "Entreprises"}, {path: "/", label: "Prestataires"}, {
     path: "/",
     label: "Solutions"
@@ -77,23 +75,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   login() {
     this.kcService.login({redirectUri: environment.kcPostLoginRedirectUri});
   }
-
-  logout() {
-    this.kcService.logout(environment.appUri).then(() => {
-      this.userService.userLogged = undefined;
-      this.userLoggedInApp = undefined;
-      this.isUserLoggedInKc = false;
-    });
-  }
-
-  // toggleSidenavMode(): void {
-  //   this.closedSidenavMode = !this.closedSidenavMode;
-  //   if (this.closedSidenavMode) {
-  //     this.sidenav!.close();
-  //   } else {
-  //     this.sidenav!.open();
-  //   }
-  // }
 
   navigateTo(path: string) {
     this.router.navigate([path]);
