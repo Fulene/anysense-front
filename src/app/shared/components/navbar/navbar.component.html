@@ -1,7 +1,7 @@
 <div *ngIf="mobileQuery.matches" class="navbar-mobile-container">
   <mat-toolbar class="mobile">
     <app-burger-menu (onClick)="panel.toggle()"></app-burger-menu>
-    <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo1.jpg" priority="true" height="35" width="146">
+    <img (click)="navigateTo('/')" alt="logo" ngSrc="../../../../assets/images/core/logo_anysense_hrztlPlan_resized.png" priority="true" height="35" width="146">
   </mat-toolbar>
   <mat-expansion-panel #panel hideToggle>
     <ul>
@@ -29,7 +29,7 @@
 
 <mat-toolbar class="desktop" *ngIf="!mobileQuery.matches">
   <div class="left">
-    <img (click)="navigateTo('/')" alt="logo" height="40" ngSrc="../../../../assets/images/core/logo1.jpg"
+    <img (click)="navigateTo('/')" alt="logo" height="40" ngSrc="../../../../assets/images/core/logo_anysense_hrztlPlan_resized.png"
          priority="true" width="167">
     <ul>
       <li (click)="navigateTo(link.path)" *ngFor="let link of links">{{ link.label }}</li>
