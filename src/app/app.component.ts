@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import { NavbarComponent } from "./shared/components/navbar/navbar.component";
 import { NgIf } from "@angular/common";
+import { GoogleTagManagerService } from "angular-google-tag-manager";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
 
   showNavbar = true;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private gtmService: GoogleTagManagerService) {
   }
 
   ngOnInit(): void {
@@ -25,6 +26,12 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showNavbar = routesWithNavbar.includes(event.urlAfterRedirects);
+        const gtmTag = {
+          event: 'page',
+          pageName: event.url
+        };
+
+        this.gtmService.pushTag(gtmTag);
       }
     });
   }

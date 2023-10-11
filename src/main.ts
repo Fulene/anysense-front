@@ -12,6 +12,7 @@ import { initializeKeycloak } from "./utils/keycloak-init";
 import { authInterceptor } from "./app/shared/interceptors/auth-interceptor";
 import { CommonModule } from "@angular/common";
 import { dashboardRoutes } from "./app/shared/dashboard-routes";
+import { GoogleTagManagerModule } from "angular-google-tag-manager";
 
 const routes: Routes = [
   {
@@ -58,7 +59,10 @@ bootstrapApplication(AppComponent, {
       FormsModule,
       MatSnackBarModule,
       KeycloakAngularModule,
-      CommonModule
+      CommonModule,
+      GoogleTagManagerModule.forRoot({
+        id: 'GTM-5XNTM7BD',
+      })
     ),
     provideAnimations(),
     provideRouter(routes),
