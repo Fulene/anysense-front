@@ -5,5 +5,7 @@ export const environment = {
   kcHost: 'https://auth.anysense.fr',
   kcRealm: 'anysense-realm',
   kcClient: 'anysense-front',
-  kcPostLoginRedirectUri: 'https://anysense.fr/dashboard'
+  kcPostLoginRedirectUri: 'https://anysense.fr/dashboard',
+  hjSiteId: 3700247,
+  hjVersion: 6
 }

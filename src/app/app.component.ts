@@ -3,6 +3,10 @@ import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import { NavbarComponent } from "./shared/components/navbar/navbar.component";
 import { NgIf } from "@angular/common";
 import { GoogleTagManagerService } from "angular-google-tag-manager";
+import Hotjar from "@hotjar/browser";
+import { environment } from "../environments/environment";
+
+declare let hj: any;
 
 @Component({
   selector: 'app-root',
@@ -18,11 +22,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.manageNavbar()
+    this.onAppInit()
   }
 
-  private manageNavbar() {
+  private onAppInit() {
+    Hotjar.init(environment.hjSiteId, environment.hjVersion);
     const routesWithNavbar = ['/home', '/test'];
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showNavbar = routesWithNavbar.includes(event.urlAfterRedirects);
@@ -32,6 +38,10 @@ export class AppComponent implements OnInit {
         };
 
         this.gtmService.pushTag(gtmTag);
+
+        if (typeof hj === 'function') {
+          hj('stateChange', event.url);
+        }
       }
     });
   }

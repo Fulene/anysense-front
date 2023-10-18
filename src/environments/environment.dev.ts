@@ -4,5 +4,7 @@ export const environment = {
   kcHost: 'http://localhost:8089/',
   kcRealm: 'anysense-realm',
   kcClient: 'anysense-front',
-  kcPostLoginRedirectUri: 'http://localhost:4200/dashboard'
+  kcPostLoginRedirectUri: 'http://localhost:4200/dashboard',
+  hjSiteId: 3700247,
+  hjVersion: 6
 }

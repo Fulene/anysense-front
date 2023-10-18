@@ -27,6 +27,7 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/platform-server": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@hotjar/browser": "^1.0.9",
     "@nguniversal/express-engine": "^16.2.0",
     "angular-google-tag-manager": "^1.8.0",
     "express": "^4.15.2",

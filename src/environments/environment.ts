@@ -5,5 +5,7 @@ export const environment = {
   kcHost: '',
   kcRealm: '',
   kcClient: '',
-  kcPostLoginRedirectUri: ''
+  kcPostLoginRedirectUri: '',
+  hjSiteId: 0,
+  hjVersion: 0
 }
