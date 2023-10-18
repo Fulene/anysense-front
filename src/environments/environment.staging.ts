@@ -5,6 +5,6 @@ export const environment = {
   kcRealm: 'anysense-staging-realm',
   kcClient: 'anysense-front',
   kcPostLoginRedirectUri: 'https://staging.anysense.fr/dashboard',
-  hjSiteId: 3700247,
+  hjSiteId: 3700463,
   hjVersion: 6
 }
