@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Anysense - Mise en relation et Assurance Qualité PLUG');
+    this.metaService.updateTag({ name: 'title', content: 'Anysense - Mise en relation et Assurance Qualité PLUG' });
     this.metaService.updateTag({ name: 'description', content: 'Plateforme de mise en relation pour installations IRVE. Trouvez les meilleurs partenaires, optimisez votre activité et bénéficiez d\'un accompagnement personnalisé. Rejoignez Anysense aujourd\'hui !' });
     this.initForm();
   }
