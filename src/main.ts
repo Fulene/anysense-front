@@ -15,11 +15,6 @@ import { authInterceptor } from "./app/shared/interceptors/auth-interceptor";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
     title: 'welcome',
     loadComponent: () => import('./app/home/home.component').then(module => module.HomeComponent)
   },
