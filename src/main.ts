@@ -17,11 +17,6 @@ import { GoogleTagManagerModule } from "angular-google-tag-manager";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
     title: 'welcome',
     // providers: [SubcontractorService],
     loadComponent: () => import('./app/core/components/home/home.component').then(module => module.HomeComponent)
