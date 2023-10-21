@@ -9,6 +9,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { UserMail } from "../temp/user-mail";
+import { Meta, Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home',
@@ -23,10 +24,14 @@ export class HomeComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userMailService: UserMailService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private titleService: Title,
+    private metaService: Meta
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Anysense - Mise en relation et Assurance Qualité PLUG');
+    this.metaService.updateTag({ name: 'description', content: 'Plateforme de mise en relation pour installations IRVE. Trouvez les meilleurs partenaires, optimisez votre activité et bénéficiez d\'un accompagnement personnalisé. Rejoignez Anysense aujourd\'hui !' });
     this.initForm();
   }
 
