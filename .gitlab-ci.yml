@@ -18,6 +18,16 @@ build_job:
     - main
     - temporary
 
+sitemap_job:
+  stage: build
+  image: node:18
+  script:
+    - npm install -g ngx-sitemap
+    - ngx-sitemap ./dist https://anysense.fr
+  only:
+    - main
+    - temporary
+
 dockerize_job:
   stage: dockerize
   image: docker:latest
