@@ -1,7 +1,7 @@
 import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
+import { bootstrapApplication, BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { provideRouter, Routes } from "@angular/router";
@@ -49,6 +49,7 @@ const routes: Routes = [
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(withInterceptors([authInterceptor])),
+    provideClientHydration(),
     importProvidersFrom(
       BrowserModule,
       FormsModule,
