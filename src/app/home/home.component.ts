@@ -18,7 +18,7 @@ import { Meta, Title } from "@angular/platform-browser";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export default class HomeComponent implements OnInit {
   form!: FormGroup;
 
   constructor(

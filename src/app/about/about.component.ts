@@ -12,7 +12,7 @@ import { Meta, Title } from "@angular/platform-browser";
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent implements OnInit {
+export default class AboutComponent implements OnInit {
 
   constructor(
     private titleService: Title,

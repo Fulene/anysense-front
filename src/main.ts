@@ -16,17 +16,17 @@ const routes: Routes = [
   {
     path: '',
     title: 'Welcome',
-    loadComponent: () => import('./app/home/home.component').then(module => module.HomeComponent)
+    loadComponent: () => import('./app/home/home.component')
   },
   {
     path: 'about',
     title: 'About',
-    loadComponent: () => import('./app/about/about.component').then(module => module.AboutComponent)
+    loadComponent: () => import('./app/about/about.component')
   },
   {
     path: '**',
     title: 'Page not found',
-    loadComponent: () => import('./app/page-not-found/page-not-found.component').then(module => module.PageNotFoundComponent)
+    loadComponent: () => import('./app/page-not-found/page-not-found.component')
   }
 ];
 
