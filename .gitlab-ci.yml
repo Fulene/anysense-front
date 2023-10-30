@@ -15,8 +15,6 @@ build_job:
   script:
     - npm install
     - npm run build:ssr --configuration=production
-    - cp sitemap.xml dist/anysense_front/browser
-    - cp robots.txt dist/anysense_front/browser
   only:
     - main
     - temporary
