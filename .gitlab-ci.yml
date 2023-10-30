@@ -7,6 +7,7 @@ cache:
   key: "$CI_JOB_NAME"
   paths:
     - node_modules/
+    - dist/
 
 build_job:
   stage: build
@@ -14,16 +15,8 @@ build_job:
   script:
     - npm install
     - npm run build:ssr --configuration=production
-  only:
-    - main
-    - temporary
-
-sitemap_job:
-  stage: build
-  image: node:18
-  script:
-    - npm install -g ngx-sitemap
-    - ngx-sitemap ./dist https://anysense.fr
+    - cp sitemap.xml dist/anysense_front/browser
+    - cp robots.txt dist/anysense_front/browser
   only:
     - main
     - temporary
@@ -53,8 +46,8 @@ deploy_job:
   services:
     - docker:dind
   before_script:
-    - - mkdir -p ~/.ssh
-      - chmod 700 ~/.ssh
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
     - 'command -v ssh-agent >/dev/null || ( apk add --no-cache openssh )'
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
