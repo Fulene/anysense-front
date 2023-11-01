@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://staging.anysense.fr/sitemap.xml

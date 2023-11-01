@@ -18,7 +18,7 @@ import { UserProfile } from "../../../../shared/models/user-profile";
     templateUrl: './signup-workflow-wrapper.component.html',
     styleUrls: ['./signup-workflow-wrapper.component.scss']
 })
-export class SignupWorkflowWrapperComponent implements OnInit {
+export default class SignupWorkflowWrapperComponent implements OnInit {
     profile?: UserProfile;
 
     constructor(private router: Router, public kcService: KeycloakService) {

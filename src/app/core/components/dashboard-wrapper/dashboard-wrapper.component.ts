@@ -23,7 +23,7 @@ import {
   templateUrl: './dashboard-wrapper.component.html',
   styleUrls: ['./dashboard-wrapper.component.scss']
 })
-export class DashboardWrapperComponent implements OnInit, OnDestroy {
+export default class DashboardWrapperComponent implements OnInit, OnDestroy {
   readonly ProfileType = ProfileType;
   appUser?: AppUser;
   kcProfile?: KeycloakProfile;

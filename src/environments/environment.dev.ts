@@ -1,4 +1,5 @@
 export const environment = {
+  label: 'dev',
   appUri: 'http://localhost:4200',
   apiHost: 'http://localhost:8081/api/',
   kcHost: 'http://localhost:8089/',

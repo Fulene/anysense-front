@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  label: 'prod',
   appUri: 'https://anysense.fr',
   apiHost: 'https://api.anysense.fr/api/',
   kcHost: 'https://auth.anysense.fr',

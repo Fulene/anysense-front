@@ -13,7 +13,7 @@ import { UserService } from "../shared/services/user.service";
   templateUrl: './test.component.html', imports: [NgIf, NgForOf, JsonPipe],
   styleUrls: ['./test.component.scss']
 })
-export class TestComponent implements OnInit, Unsubscribable {
+export default class TestComponent implements OnInit, Unsubscribable {
   userName?: string
   users: AppUser[] = [];
   private subscription = new Subscription();

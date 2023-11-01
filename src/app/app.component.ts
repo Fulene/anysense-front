@@ -1,49 +1,74 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import { NavbarComponent } from "./shared/components/navbar/navbar.component";
-import { NgIf } from "@angular/common";
+import { isPlatformBrowser, NgIf } from "@angular/common";
 import { GoogleTagManagerService } from "angular-google-tag-manager";
 import Hotjar from "@hotjar/browser";
 import { environment } from "../environments/environment";
+import { Meta, Title } from "@angular/platform-browser";
+import { KeycloakService } from "keycloak-angular";
 
 declare let hj: any;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'], imports: [RouterOutlet, NavbarComponent, NgIf],
-  standalone: true
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [RouterOutlet, NavbarComponent, NgIf],
+    standalone: true
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  showNavbar = true;
+    showNavbar = true;
 
-  constructor(private router: Router, private gtmService: GoogleTagManagerService) {
-  }
+    constructor(private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private gtmService: GoogleTagManagerService,
+        private titleService: Title,
+        private metaService: Meta,
+        @Inject(PLATFORM_ID) private readonly platformId: any) {
+    }
 
-  ngOnInit(): void {
-    this.onAppInit()
-  }
+    ngOnInit() {
+        if (isPlatformBrowser(this.platformId)) this.onAppInit();
+    }
 
-  private onAppInit() {
-    Hotjar.init(environment.hjSiteId, environment.hjVersion);
-    const routesWithNavbar = ['/home', '/test'];
+    private onAppInit() {
+        console.log("App init...");
 
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showNavbar = routesWithNavbar.includes(event.urlAfterRedirects);
-        const gtmTag = {
-          event: 'page',
-          pageName: event.url
-        };
+        if (environment.label === 'prod' || environment.label === 'staging')
+            Hotjar.init(environment.hjSiteId, environment.hjVersion);
+        const routesWithNavbar = ['/', '/test'];
 
-        this.gtmService.pushTag(gtmTag);
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.showNavbar = routesWithNavbar.includes(event.urlAfterRedirects);
+                const gtmTag = {
+                    event: 'page', pageName: event.url
+                };
 
-        if (typeof hj === 'function') {
-          hj('stateChange', event.url);
-        }
-      }
-    });
-  }
+                this.gtmService.pushTag(gtmTag);
+
+                if (typeof hj === 'function') {
+                    hj('stateChange', event.url);
+                }
+
+                // SEO Metadata Update
+                let child = this.activatedRoute.firstChild;
+                while (child) {
+                    if (child.firstChild) {
+                        child = child.firstChild;
+                    } else if (child.snapshot.data && child.snapshot.data['seo']) {
+                        const seoData = child.snapshot.data['seo'];
+                        this.titleService.setTitle(seoData.title);
+                        this.metaService.updateTag({name: 'description', content: seoData.description});
+                        break;
+                    } else {
+                        child = null;
+                    }
+                }
+            }
+        });
+    }
 
 }
