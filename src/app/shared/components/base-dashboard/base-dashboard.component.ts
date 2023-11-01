@@ -74,6 +74,11 @@ export class BaseDashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  toggleSidenavModeIfMobileOnSelectLink(): void {
+    if (!this.isMobileMode) return;
+    this.toggleSidenavMode()
+  }
+
   onSnavClosed() {
     this.closedSidenavMode = true
   }

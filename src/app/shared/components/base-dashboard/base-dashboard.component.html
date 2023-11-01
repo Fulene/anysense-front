@@ -21,7 +21,7 @@
               <mat-icon>close</mat-icon>
             </button>
           </header>
-          <a *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="active-link" (click)="toggleSidenavMode()">
+          <a *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="active-link" (click)="toggleSidenavModeIfMobileOnSelectLink()">
             <mat-icon [attr.aria-label]="link.label" [fontIcon]="link.icon"></mat-icon>
             <span>{{ link.label }}</span>
           </a>
