@@ -7,7 +7,7 @@
     <ul>
       <li (click)="navigateTo(link.path)" *ngFor="let link of links">{{ link.label }}</li>
     </ul>
-    <div *ngIf="!isLoading">
+    <div>
       <ng-container *ngIf="!isUserLoggedInKc">
         <app-button (onClick)="navigateTo('/signup')" label="Créer mon compte" theme="primary"></app-button>
         <app-button-bis (onClick)="login()" label="Me connecter"></app-button-bis>
@@ -33,7 +33,7 @@
     </ul>
   </div>
 
-  <div *ngIf="!isLoading" class="right">
+  <div class="right">
     <ng-container *ngIf="!isUserLoggedInKc">
       <app-button (onClick)="navigateTo('/signup')" label="Créer mon compte" theme="primary"></app-button>
       <app-button-bis (onClick)="login()" label="Me connecter"></app-button-bis>
