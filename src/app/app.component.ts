@@ -34,8 +34,6 @@ export class AppComponent {
     }
 
     private onAppInit() {
-        console.log("App init...");
-
         if (environment.label === 'prod' || environment.label === 'staging')
             Hotjar.init(environment.hjSiteId, environment.hjVersion);
         const routesWithNavbar = ['/', '/test'];
