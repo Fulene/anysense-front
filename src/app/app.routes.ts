@@ -6,7 +6,7 @@ import { conditionalKcGuard } from "./shared/guards/conditional-kc.guard";
 export const appRoutes: Routes = [
   {
     path: '',
-    title: 'Welcome',
+    title: 'Accueil',
     // providers: [SubcontractorService],
     loadComponent: () => import('./core/components/home/home.component'),
     data: {
