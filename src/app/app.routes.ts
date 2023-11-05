@@ -26,6 +26,12 @@ export const appRoutes: Routes = [
     path: 'seo',
     title: 'Test SEO',
     loadComponent: () => import('./seotest/seotest.component'),
+    data: {
+      seo: {
+        title: 'Anysense - Test Title SEO page',
+        description: 'Test Description on SEO page'
+      }
+    }
   },
   {
     path: 'signup',
