@@ -145,7 +145,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/anysense_front/server",
-            "main": "server.ts",
+            "main": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
           },
@@ -189,7 +189,8 @@
           "options": {
             "routes": [
               "/",
-              "/signup"
+              "/signup",
+              "/seo"
             ]
           },
           "configurations": {

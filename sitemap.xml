@@ -4,6 +4,9 @@
         <loc>https://staging.anysense.fr</loc>
     </url>
     <url>
+        <loc>https://staging.anysense.fr/seo</loc>
+    </url>
+    <url>
         <loc>https://staging.anysense.fr/signup</loc>
     </url>
 </urlset>

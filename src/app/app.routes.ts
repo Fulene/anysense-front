@@ -23,6 +23,11 @@ export const appRoutes: Routes = [
     canActivate: [conditionalKcGuard]
   },
   {
+    path: 'seo',
+    title: 'Test SEO',
+    loadComponent: () => import('./seotest/seotest.component'),
+  },
+  {
     path: 'signup',
     title: 'Création de compte',
     loadComponent: () => import('./core/components/signup/signup-workflow-wrapper/signup-workflow-wrapper.component'),

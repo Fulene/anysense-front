@@ -8,6 +8,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './seotest.component.html',
   styleUrls: ['./seotest.component.scss']
 })
-export class SeotestComponent {
+export default class SeotestComponent {
 
 }

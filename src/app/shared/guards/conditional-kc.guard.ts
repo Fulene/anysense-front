@@ -8,7 +8,7 @@ export const conditionalKcGuard: CanActivateFn = async (route, state) => {
   const kcStateService: KeycloakStateService = inject(KeycloakStateService);
   const authGuard: AuthGuard = inject(AuthGuard);
 
-  const isInitialized = await lastValueFrom(kcStateService.isInitialized.pipe(take(1)));
-  if (!isInitialized) return false;
+  const isKCInitialized = await lastValueFrom(kcStateService.isInitialized.pipe(take(1)));
+  if (!isKCInitialized) return false;
   else return authGuard.canActivate(route, state);
 };
