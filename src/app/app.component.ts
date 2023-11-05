@@ -51,21 +51,6 @@ export class AppComponent {
                 if (typeof hj === 'function') {
                     hj('stateChange', event.url);
                 }
-
-                // SEO Metadata Update
-                let child = this.activatedRoute.firstChild;
-                while (child) {
-                    if (child.firstChild) {
-                        child = child.firstChild;
-                    } else if (child.snapshot.data && child.snapshot.data['seo']) {
-                        const seoData = child.snapshot.data['seo'];
-                        this.titleService.setTitle(seoData.title);
-                        this.metaService.updateTag({name: 'description', content: seoData.description});
-                        break;
-                    } else {
-                        child = null;
-                    }
-                }
             }
         });
     }
