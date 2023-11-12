@@ -57,6 +57,12 @@ export class BaseDashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+  async test() {
+    const keycloakInstance = this.kcService.getKeycloakInstance();
+    const accountUrl = keycloakInstance.createAccountUrl();
+    this.userService.updateUserKcProfile(this.kcService.getKeycloakInstance().subject!, accountUrl).subscribe(res => console.log(res));
+  }
+
   media(query: string): Observable<boolean> {
     const mediaQuery = window.matchMedia(query);
     return fromEvent<MediaQueryList>(mediaQuery, 'change').pipe(

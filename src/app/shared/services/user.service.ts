@@ -3,6 +3,7 @@ import { BaseEntityService } from "./base-entity-service";
 import { AppUser } from "../models/app-user";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of, tap } from "rxjs";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,18 @@ export class UserService extends BaseEntityService<AppUser> {
           this.userLogged = user;
         })
     )
+  }
+
+  public updateUserKcProfile(userId: string, accountUrl: string): Observable<any> {
+      const data = {
+          "firstName": "Nouveau Prénom",
+          "lastName": "Nouveau Nom",
+      }
+      return this.http.post(accountUrl, data);
+  }
+
+  public brevo(): Observable<any> {
+    return this.http.get<any>(this.API_ENDPOINT + '/email');
   }
 
 }

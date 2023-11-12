@@ -2,6 +2,7 @@
 {{ userService.userLogged | json }}
 <div>
   <h3>{{ userName }}</h3>
+  <button (click)="brevo()">Brevo</button>
   <button (click)="logout()">Logout</button>
 </div>
 <section *ngIf="users.length">

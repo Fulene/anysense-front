@@ -10,19 +10,19 @@ import { UserService } from "../shared/services/user.service";
 @Component({
   selector: 'app-test',
   standalone: true,
-  templateUrl: './test.component.html', imports: [NgIf, NgForOf, JsonPipe],
+  templateUrl: './test.component.html',
+  imports: [NgIf, NgForOf, JsonPipe],
   styleUrls: ['./test.component.scss']
 })
 export default class TestComponent implements OnInit, Unsubscribable {
-  userName?: string
+  userName?: string;
   users: AppUser[] = [];
   private subscription = new Subscription();
 
-  constructor(
-    private kcService: KeycloakService,
+  constructor(private kcService: KeycloakService,
     public userService: UserService,
-    private notificationService: NotificationService
-  ) {}
+    private notificationService: NotificationService) {
+  }
 
   ngOnInit(): void {
     this.userName = this.kcService.getUsername();
@@ -30,12 +30,9 @@ export default class TestComponent implements OnInit, Unsubscribable {
   }
 
   private initDataTest(): void {
-    this.subscription.add(
-      this.userService.findAll().subscribe({
-        next: value => this.users = value,
-        error: err => console.error(err)
-      })
-    );
+    this.subscription.add(this.userService.findAll().subscribe({
+      next: value => this.users = value, error: err => console.error(err)
+    }));
   }
 
   unsubscribe(): void {
@@ -48,5 +45,9 @@ export default class TestComponent implements OnInit, Unsubscribable {
 
   logout() {
     this.kcService.logout(environment.appUri);
+  }
+
+  brevo() {
+    this.userService.brevo().subscribe(res => console.log(res));
   }
 }
