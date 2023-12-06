@@ -27,7 +27,11 @@
           </a>
         </div>
         <div class="bottom">
-          <a (click)="test()">
+          <a (click)="updateUser()">
+            <mat-icon label="disconnect" fontIcon="keyboard_backspace"></mat-icon>
+            <span>Update</span>
+          </a>
+          <a (click)="changePassword()">
             <mat-icon label="disconnect" fontIcon="keyboard_backspace"></mat-icon>
             <span>Changer mon mot de passe</span>
           </a>
@@ -42,6 +46,7 @@
     <mat-sidenav-content>
       <section class="content">
         <router-outlet></router-outlet>
+        <pre>{{ userLogged | json }}</pre>
       </section>
     </mat-sidenav-content>
   </mat-sidenav-container>

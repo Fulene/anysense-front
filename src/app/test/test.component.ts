@@ -50,4 +50,5 @@ export default class TestComponent implements OnInit, Unsubscribable {
   brevo() {
     this.userService.brevo().subscribe(res => console.log(res));
   }
+
 }

@@ -13,6 +13,7 @@ import { environment } from "../../../../environments/environment";
 import { KeycloakService } from "keycloak-angular";
 import { UserService } from "../../services/user.service";
 import { fromEvent, map, Observable, startWith, Subscription } from "rxjs";
+import { AppUser } from "../../models/app-user";
 
 @Component({
   selector: 'app-base-dashboard',
@@ -28,18 +29,18 @@ export class BaseDashboardComponent implements OnInit, OnDestroy {
   closedSidenavMode = false;
   mediaSubscription: Subscription;
   isMobileMode: boolean = true;
+  userLogged?: AppUser;
 
-  constructor (private router: Router,
-              cdr: ChangeDetectorRef,
-              media: MediaMatcher,
-              private kcService: KeycloakService,
-              private userService: UserService) {
-    this.mediaSubscription = this.media('(max-width: 768px)').subscribe((matches) =>
-      this.isMobileMode = matches
-    );
+  constructor(private router: Router,
+    cdr: ChangeDetectorRef,
+    media: MediaMatcher,
+    private kcService: KeycloakService,
+    private userService: UserService) {
+    this.mediaSubscription = this.media('(max-width: 768px)').subscribe((matches) => this.isMobileMode = matches);
   }
 
   ngOnInit(): void {
+    this.userLogged = this.userService.userLogged;
     if (!this.links.length) {
       console.warn('Pas de liens fournis pour BaseDashboardComponent');
     } else {
@@ -57,18 +58,9 @@ export class BaseDashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  async test() {
-    const keycloakInstance = this.kcService.getKeycloakInstance();
-    const accountUrl = keycloakInstance.createAccountUrl();
-    this.userService.updateUserKcProfile(this.kcService.getKeycloakInstance().subject!, accountUrl).subscribe(res => console.log(res));
-  }
-
   media(query: string): Observable<boolean> {
     const mediaQuery = window.matchMedia(query);
-    return fromEvent<MediaQueryList>(mediaQuery, 'change').pipe(
-      startWith(mediaQuery),
-      map((list: MediaQueryList) => list.matches)
-    );
+    return fromEvent<MediaQueryList>(mediaQuery, 'change').pipe(startWith(mediaQuery), map((list: MediaQueryList) => list.matches));
   }
 
   toggleSidenavMode(): void {
@@ -82,11 +74,11 @@ export class BaseDashboardComponent implements OnInit, OnDestroy {
 
   toggleSidenavModeIfMobileOnSelectLink(): void {
     if (!this.isMobileMode) return;
-    this.toggleSidenavMode()
+    this.toggleSidenavMode();
   }
 
   onSnavClosed() {
-    this.closedSidenavMode = true
+    this.closedSidenavMode = true;
   }
 
   navigateTo(path: string) {
@@ -95,6 +87,27 @@ export class BaseDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mediaSubscription.unsubscribe();
+  }
+
+  updateUser() {
+    if (!this.userLogged) return;
+
+    this.userLogged.firstname = "Med";
+    this.userLogged.lastname = "Hamer";
+    this.userService.update(this.userLogged).subscribe(res => {
+      this.userLogged = res;
+      this.userService.userLogged = res;
+      console.log(this.userService.userLogged);
+    });
+  }
+
+  changePassword() {
+    const newPassword = "mehdi";
+    if (!newPassword) return;
+
+    this.userService.updatePassword(newPassword).subscribe(res => {
+      console.log("Success");
+    });
   }
 
 }
