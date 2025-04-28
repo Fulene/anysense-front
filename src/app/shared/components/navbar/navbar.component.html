@@ -35,7 +35,7 @@
 
   <div class="right">
     <ng-container *ngIf="!isUserLoggedInKc">
-      <app-button (onClick)="navigateTo('/signup')" label="Créer mon compte" theme="primary"></app-button>
+      <app-button (onClick)="navigateTo('/signup')" label="Créer mon compte" theme="primary" [loading]="isLoading"></app-button>
       <app-button-bis (onClick)="login()" label="Me connecter"></app-button-bis>
     </ng-container>
 

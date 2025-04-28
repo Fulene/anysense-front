@@ -76,6 +76,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   navigateTo(path: string) {
+    this.isLoading = true;
     this.router.navigate([path]);
   }
 
